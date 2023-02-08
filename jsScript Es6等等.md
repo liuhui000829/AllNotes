@@ -8446,18 +8446,29 @@ componentDidCatch(error, info) {
 
 # 三. Git
 
-## 1. 基础
+## 1. 基础命令
 
-```nim
-git add -m '  '
-git commit -m ' '
-git checkout <name>			//切换分支
-git checkout -b <name>  	//基于什么并创建分支
+```js
+git add <name>  			// 添加到 暂存区
+git commit -m ' '			// 吧工作区的提交
+git checkout <name>			// 切换分支
+git checkout -b <name>  	// 基于什么并创建分支
 
-git branch   			   //查看分支
-git branch -d  分支名 		//删除本地分支
+git branch   			    // 查看本地分支
+git branch -d  分支名 		  // 删除本地分支
+git branch -a				// 查看本地跟远程的分支
+git push origin -d 分支名    // 删除远程分支
 
-git push -u origin <name> 推送到远程
+
+// 版本回退
+git log  // 查看提交的日志
+git reflog // 查看所有的日志
+
+
+
+
+
+git push -u origin <name> 推送到远程			// 第一次需要加u
 
 合并代码
 master   Kyrie
