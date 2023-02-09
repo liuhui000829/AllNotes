@@ -3433,19 +3433,11 @@ Object.defineProperty(person, 'age', {
 5.系统修饰符 用法特殊 ctrl alt  shift meta
 
     (1)配合keyup使用按下修饰键的同时 在按下其他键 随后释放其他键 事件才被触发
-<<<<<<< HEAD
     
     (2)配合keydown使用 正常触发事件
     
     特殊 tab必须配合 keydown使用 ctrl alt shift meta(win键) 只有ctrl+y才行
 
-=======
-
-    (2)配合keydown使用 正常触发事件
-
-    特殊 tab必须配合 keydown使用 ctrl alt shift meta(win键) 只有ctrl+y才行
-
->>>>>>> dev
 `<span style="color:red">`具体的参考Vue 代码 01VueDay==> 事件处理
 
 ### 3.计算属性与监听
@@ -3983,11 +3975,7 @@ export default {
 ### 9.两个新的生命周期钩子
 
     1.作用: 路由组件所独有的两个钩子，用于捕获路由组件的激状态
-<<<<<<< HEAD
     
-=======
-
->>>>>>> dev
     2.具体名字:
 
 ```
@@ -4082,7 +4070,6 @@ router.afterEach((to, from) => {
 ### 脚手架文件结构
 
     ├── node_modules
-<<<<<<< HEAD
     ├── public
     │   ├── favicon.ico: 页签图标
     │   └── index.html: 主页面
@@ -4098,23 +4085,6 @@ router.afterEach((to, from) => {
     ├── package.json: 应用包配置文件
     ├── README.md: 应用描述文件
     ├── package-lock.json：包版本控制文件
-=======
-	├── public
-	│   ├── favicon.ico: 页签图标
-	│   └── index.html: 主页面
-	├── src
-	│   ├── assets: 存放静态资源
-	│   │   └── logo.png
-	│   │── component: 存放组件
-	│   │   └── HelloWorld.vue
-	│   │── App.vue: 汇总所有组件
-	│   │── main.js: 入口文件
-	├── .gitignore: git版本管制忽略的配置
-	├── babel.config.js: babel的配置文件
-	├── package.json: 应用包配置文件
-	├── README.md: 应用描述文件
-	├── package-lock.json：包版本控制文件
->>>>>>> dev
 
 ### 关于不同版本的Vue
 
@@ -4177,11 +4147,7 @@ router.afterEach((to, from) => {
    第二步使用混入：
 
        全局混入：``Vue.mixin(xxx)``
-<<<<<<< HEAD
        局部混入：``mixins:['xxx']	``
-=======
-   	局部混入：``mixins:['xxx']	``
->>>>>>> dev
 
 ### 插件
 
@@ -4193,13 +4159,13 @@ router.afterEach((to, from) => {
    对象.install = function (Vue, options) {
        // 1. 添加全局过滤器
        Vue.filter(....)
-
+   
        // 2. 添加全局指令
        Vue.directive(....)
-
+   
        // 3. 配置全局混入(合)
        Vue.mixin(....)
-
+   
        // 4. 添加实例方法
        Vue.prototype.$myMethod = function () {...}
        Vue.prototype.$myProperty = xxxx
@@ -4420,7 +4386,7 @@ module.exports = {
                   <template slot="center">
                     <div>html结构1</div>
                   </template>
-
+      
                   <template v-slot:footer>
                      <div>html结构2</div>
                   </template>
@@ -4449,7 +4415,7 @@ module.exports = {
          				</ul>
          			</template>
          		</Category>
-
+         
          		<Category>
          			<template slot-scope="scopeData">
          				<!-- 生成的是h4标题 -->
@@ -4462,11 +4428,7 @@ module.exports = {
                          <slot :games="games"></slot>
                      </div>
                  </template>
-<<<<<<< HEAD
          
-=======
-
->>>>>>> dev
                  <script>
                      export default {
                          name:'Category',
@@ -4482,7 +4444,7 @@ module.exports = {
          ```
 
    ```
-
+   
    ```
 
 ### Vuex
@@ -4506,14 +4468,14 @@ module.exports = {
    import Vuex from 'vuex'
    //应用Vuex插件
    Vue.use(Vuex)
-
+   
    //准备actions对象——响应组件中用户的动作
    const actions = {}
    //准备mutations对象——修改state中的数据
    const mutations = {}
    //准备state对象——保存具体的数据
    const state = {}
-
+   
    //创建并暴露store
    export default new Vuex.Store({
    	actions,
@@ -4528,7 +4490,7 @@ module.exports = {
    //引入store
    import store from './store'
    ......
-
+   
    //创建vm
    new Vue({
    	el:'#app',
@@ -4548,7 +4510,7 @@ module.exports = {
    import Vuex from 'vuex'
    //引用Vuex
    Vue.use(Vuex)
-
+   
    const actions = {
        //响应组件中加的动作
    	jia(context,value){
@@ -4556,7 +4518,7 @@ module.exports = {
    		context.commit('JIA',value)
    	},
    }
-
+   
    const mutations = {
        //执行加
    	JIA(state,value){
@@ -4564,12 +4526,12 @@ module.exports = {
    		state.sum += value
    	}
    }
-
+   
    //初始化数据
    const state = {
       sum:0
    }
-
+   
    //创建并暴露store
    export default new Vuex.Store({
    	actions,
@@ -4590,13 +4552,13 @@ module.exports = {
 
    ```js
    ......
-
+   
    const getters = {
    	bigSum(state){
    		return state.sum * 10
    	}
    }
-
+   
    //创建并暴露store
    export default new Vuex.Store({
    	......
@@ -4613,11 +4575,7 @@ module.exports = {
    computed: {
        //借助mapState生成计算属性：sum、school、subject（对象写法）
         ...mapState({sum:'sum',school:'school',subject:'subject'}),
-<<<<<<< HEAD
    
-=======
-
->>>>>>> dev
        //借助mapState生成计算属性：sum、school、subject（数组写法）
        ...mapState(['sum','school','subject']),
    },
@@ -4628,7 +4586,7 @@ module.exports = {
    computed: {
        //借助mapGetters生成计算属性：bigSum（对象写法）
        ...mapGetters({bigSum:'bigSum'}),
-
+   
        //借助mapGetters生成计算属性：bigSum（数组写法）
        ...mapGetters(['bigSum'])
    },
@@ -4639,7 +4597,7 @@ module.exports = {
    methods:{
        //靠mapActions生成：incrementOdd、incrementWait（对象形式）
        ...mapActions({incrementOdd:'jiaOdd',incrementWait:'jiaWait'})
-
+   
        //靠mapActions生成：incrementOdd、incrementWait（数组形式）
        ...mapActions(['jiaOdd','jiaWait'])
    }
@@ -4650,11 +4608,7 @@ module.exports = {
    methods:{
        //靠mapActions生成：increment、decrement（对象形式）
        ...mapMutations({increment:'JIA',decrement:'JIAN'}),
-<<<<<<< HEAD
    
-=======
-
->>>>>>> dev
        //靠mapMutations生成：JIA、JIAN（对象形式）
        ...mapMutations(['JIA','JIAN']),
    }
@@ -4679,14 +4633,14 @@ module.exports = {
        }
      }
    }
-
+   
    const personAbout = {
      namespaced:true,//开启命名空间
      state:{ ... },
      mutations: { ... },
      actions: { ... }
    }
-
+   
    const store = new Vuex.Store({
      modules: {
        countAbout,
@@ -4744,7 +4698,7 @@ module.exports = {
    //引入Luyou 组件
    import About from '../components/About'
    import Home from '../components/Home'
-
+   
    //创建router实例对象，去管理一组一组的路由规则
    const router = new VueRouter({
    	routes:[
@@ -4758,7 +4712,7 @@ module.exports = {
    		}
    	]
    })
-
+   
    //暴露router
    export default router
    ```
@@ -4819,11 +4773,7 @@ module.exports = {
    ```vue
    <!-- 跳转并携带query参数，to的字符串写法 -->
    <router-link :to="/home/message/detail?id=666&title=你好">跳转</router-link>
-<<<<<<< HEAD
    
-=======
-
->>>>>>> dev
    <!-- 跳转并携带query参数，to的对象写法 -->
    <router-link 
    	:to="{
@@ -4873,10 +4823,10 @@ module.exports = {
       ```vue
       <!--简化前，需要写完整的路径 -->
       <router-link to="/demo/test/welcome">跳转</router-link>
-
+      
       <!--简化后，直接通过名字跳转 -->
       <router-link :to="{name:'hello'}">跳转</router-link>
-
+      
       <!--简化写法配合传递参数 -->
       <router-link 
       	:to="{
@@ -4920,11 +4870,7 @@ module.exports = {
    ```vue
    <!-- 跳转并携带params参数，to的字符串写法 -->
    <router-link :to="/home/message/detail/666/你好">跳转</router-link>
-<<<<<<< HEAD
    
-=======
-
->>>>>>> dev
    <!-- 跳转并携带params参数，to的对象写法 -->
    <router-link 
    	:to="{
@@ -4992,7 +4938,7 @@ module.exports = {
    			title:xxx
    		}
    })
-
+   
    this.$router.replace({
    	name:'xiangqing',
    		params:{
@@ -5044,7 +4990,7 @@ module.exports = {
    		next() //放行
    	}
    })
-
+   
    //全局后置守卫：初始化时执行、每次路由切换后执行
    router.afterEach((to,from)=>{
    	console.log('afterEach',to,from)
@@ -5087,14 +5033,14 @@ module.exports = {
 
 1. ```
    1. 对于一个url来说，什么是hash值？—— #及其后面的内容就是hash值。
-
+   
    2. hash值不会包含在 HTTP 请求中，即：hash值不会带给服务器。
-
+   
    3. hash模式：
       1. 地址中永远带着#号，不美观 。
       2. 若以后将地址通过第三方手机app分享，若app校验严格，则地址会被标记为不合法。
       3. 兼容性较好。
-
+   
    4. history模式：
       1. 地址干净，美观 。
       2. 兼容性和hash模式相比略差。
@@ -5874,37 +5820,21 @@ b. 真实dom
 **1. 初始化阶段: 由ReactDom.render()触发一次渲染**
 
     **1.constructor()**
-<<<<<<< HEAD
     
     **2.componentWillMount()**
     
     **3.render()**
     
-=======
-
-    **2.componentWillMount()**
-
-    **3.render()**
-
->>>>>>> dev
     **4.componentDidMount() ==> 常用 一般在这个钩子做一些初始化的事情，开启定时器，发送网络请求，订阅消息**
 
   **2. 更新阶段 由组件内部this.setState()或父组件render触发**
 
     **1.shouldComponentUpdate()**
-<<<<<<< HEAD
     
     **2.componentWillUpdate()**
     
     **3.render() ===> 必须使用的一个**
     
-=======
-
-    **2.componentWillUpdate()**
-
-    **3.render() ===> 必须使用的一个**
-
->>>>>>> dev
     **4.componentDidUpdate()**
 
   **3. 卸载组件: 由ReactDOM.unmountComponentAtNode() 触发**
@@ -6222,7 +6152,6 @@ e.创建项目并启动
 **2. 路由的理解**
 
     **1. 什么是路由?**
-<<<<<<< HEAD
     
     a. 一个路由就是一个映射关系(key：value)
     
@@ -6254,39 +6183,6 @@ e.创建项目并启动
     
     c. 基于react的项目基本都会用到此库
     
-=======
-
-    a. 一个路由就是一个映射关系(key：value)
-
-    b.key为路径,value可能是function或者 component
-
-    **2. 路由的分类**
-
-    a. 后端路由:
-
-    Ⅰ. 理解: value是function，用来处理客户端的请求
-
-    Ⅱ. 注册路由: router.get(path,function(req,res))
-
-    Ⅲ. 工作过程：当node接收到一个请求时,根据请求路径找到匹配的路由,调用路由中的函数来处理请求,返回响应数据
-
-    b. 前端路由:
-
-    Ⅰ. 浏览器端路由, value是componet，用于展现页面内容
-
-    Ⅱ. 注册路由:`<Route path="/test" component={Test}>`
-
-    Ⅲ.工作过程: 当浏览器的path变为/test时,当前路由组件就会变成Test组件
-
-    **3. react-router 的理解**
-
-    a. react的一个插件库
-
-    b. 专门用来实现一个 spa应用
-
-    c. 基于react的项目基本都会用到此库
-
->>>>>>> dev
     **4. react-router-dom相关Api**
 
 ```react
@@ -6389,11 +6285,7 @@ e.创建项目并启动
 <Link to="/home">  Home  </NavLink>
  
  
-<<<<<<< HEAD
    ```
-=======
-```
->>>>>>> dev
 
 #### 5. `<NavLink>`
 
@@ -6442,22 +6334,18 @@ export default function App() {
 3. 示例代码:
 
    ```react
-<<<<<<< HEAD
    
-=======
-
->>>>>>> dev
    第一种:
    <Routes>
        <Route path="/home" element={<Home a={"123"} />} />
        <Route path="/about" element={<About />} />
        <Route path="/" element={<Navigate to="/about" />} />
    </Routes>
-
+   
    第二种:
    import React, { useState } from "react";
    import { Navigate } from "react-router-dom";
-
+   
    export default function Home() {
      let [sum, setSum] = useState(1);
      return (
@@ -7068,11 +6956,7 @@ export default class Count extends React.Component {
 新增了两个文件:
 
     1. count_Action.js 专门用于创建action对象
-<<<<<<< HEAD
     1. constant.js 放置编码忽略写错action中的 type
-=======
-	1. constant.js 放置编码忽略写错action中的 type
->>>>>>> dev
 
 ```react
 1. count_Action.js
@@ -7220,11 +7104,7 @@ import {
    connect(mapStateToProps, mapDispatchToProps)(CountUI);
    	--mapStateToProps：映射状态,返回值是一个对象
    	--mapDispatchToProps：映射操作状态的方法: 返回值是一个对象
-<<<<<<< HEAD
    
-=======
-
->>>>>>> dev
    ```
 4. 备注: 容器组件的store是靠props传进去的 而不是在容器组件中直接使用
 
@@ -8106,7 +7986,6 @@ useEffect、useMemo、useCallback都是自带闭包的。也就是说，每一�
 **解决**
 
     办法1:
-<<<<<<< HEAD
     	重写shouldComponentUpdate()方法
     	比较新旧state或props数据, 如果有变化才返回true, 如果没有返回false
     办法2:
@@ -8116,17 +7995,6 @@ useEffect、useMemo、useCallback都是自带闭包的。也就是说，每一�
     		只是进行state和props数据的浅比较, 如果只是数据对象内部数据变了, 返回false
     不要直接修改state数据, 而是要产生新数据
     项目中一般使用PureComponent来优化
-=======
-		重写shouldComponentUpdate()方法
-		比较新旧state或props数据, 如果有变化才返回true, 如果没有返回false
-	办法2:
-    使用PureComponent
-		PureComponent重写了shouldComponentUpdate(), 只有state或props数据有变化才返回true
-		注意:
-			只是进行state和props数据的浅比较, 如果只是数据对象内部数据变了, 返回false
-    不要直接修改state数据, 而是要产生新数据
-	项目中一般使用PureComponent来优化
->>>>>>> dev
 
 <hr/>
 
@@ -8205,7 +8073,6 @@ componentDidCatch(error, info) {
 **几种通信方式：**
 
     1.props：
-<<<<<<< HEAD
     		(1).children props
     		(2).render props
     	2.消息订阅-发布：
@@ -8214,27 +8081,12 @@ componentDidCatch(error, info) {
     		redux、dva等等
     	4.conText:
     		生产者-消费者模式
-=======
-			(1).children props
-			(2).render props
-		2.消息订阅-发布：
-			pubs-sub、event等等
-		3.集中式管理：
-			redux、dva等等
-		4.conText:
-			生产者-消费者模式
->>>>>>> dev
 
 **比较好的搭配方式：**
 
     父子组件：props
-<<<<<<< HEAD
     	兄弟组件：消息订阅-发布、集中式管理
     	祖孙组件(跨级组件)：消息订阅-发布、集中式管理、conText(开发用的少，封装插件用的多)
-=======
-		兄弟组件：消息订阅-发布、集中式管理
-		祖孙组件(跨级组件)：消息订阅-发布、集中式管理、conText(开发用的少，封装插件用的多)
->>>>>>> dev
 
 # 三. Git
 
@@ -9515,7 +9367,6 @@ Object.assign(
 ## 3. setState()更新状态是异步/同步?
 
     a. 执行setState()的位置?
-<<<<<<< HEAD
     
     在react控制的回调函数中: 生命周期勾子 / react事件监听回调
     
@@ -9525,17 +9376,6 @@ Object.assign(
     
     react相关回调中（生命周期回调、事件监听回调）: 异步
     
-=======
-
-    在react控制的回调函数中: 生命周期勾子 / react事件监听回调
-
-    非react控制的异步回调函数中: 定时器回调 / 原生DOM事件监听回调 / promise回调 /...
-
-    b. 异步 OR 同步?
-
-    react相关回调中（生命周期回调、事件监听回调）: 异步
-
->>>>>>> dev
     其它异步回调中（定时器、原生DOM事件监听回调、Promsie回调）: 同步
 
 ## 4. 垃圾回收
@@ -10539,7 +10379,7 @@ let obj3 = obj1
 
    ```js
    const proxy = require('http-proxy-middleware')
-
+   
    module.exports = function(app) {
      app.use(
        proxy('/api1', {  //api1是需要转发的请求(所有带有/api1前缀的请求都会转发给5000)
@@ -10969,7 +10809,7 @@ if (target.nodeName.toLocaleLowerCase() === 'li') {
    ```javascript
    // 引入axios
    import axios from 'axios'
-
+   
    // 创建实例
    let instance = axios.create({
        baseURL: 'xxxxxxxxxx',
@@ -10982,11 +10822,11 @@ if (target.nodeName.toLocaleLowerCase() === 'li') {
    let baseURL;
    if(process.env.NODE_ENV === 'development') {
        baseURL = 'xxx本地环境xxx';
-
+   
    } else if(process.env.NODE_ENV === 'production') {
        baseURL = 'xxx生产环境xxx';
    }
-
+   
    // 实例
    let instance = axios.create({
        baseURL: baseURL,
@@ -11035,7 +10875,7 @@ instance.interceptors.reponse.use(req=>{}, err=>{});
    ```javascript
    // use(两个参数)
    axios.interceptors.request.use(req => {
-
+   
    // 在发送请求前要做的事儿
        return req
    }, err => {
@@ -11059,7 +10899,7 @@ instance.interceptors.reponse.use(req=>{}, err=>{});
        ...
        // 该返回的数据则是axios.catch(err)中接收的数据
        return Promise.reject(err)
-
+   
    })
    ```
 3. 常见错误码处理(error)
@@ -11475,11 +11315,7 @@ class Dog extends React.Component {
   **3. 主要得区别**
 
     在hash模式下，前端路由修改的是#中的信息，而浏览器请求时不会将 # 后面的数据发送到后台，所以没有问题。
-<<<<<<< HEAD
     
-=======
-
->>>>>>> dev
     但是在history下，你修改path时，当刷新时，如果服务器中没有相应的响应或者资源，则会刷新出来404页面。
 
 ## 3. React跳转路由传参4种方法和区别
