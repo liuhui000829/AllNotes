@@ -1,6 +1,6 @@
 # 一. JavaScript
 
-## 1. 基础部分 
+## 1. 基础部分
 
 ### 1. var let const
 
@@ -26,7 +26,7 @@ function hdms() {
 ```js
   var web = 'beidaqingniao.com'
   console.log(web);        '' 并不是输出web之后再报错 关键字Class  js会进行预解析  直接报错
-  var class='hdcms';      
+  var class='hdcms';    
 ```
 
 **3. 变量提升**
@@ -47,7 +47,7 @@ function hdms() {
 **5. 暂存性死区**
 
 ```js
- let web = 'hdms.com';       
+ let web = 'hdms.com';     
    function func() {
      console.log(web);		    '' Uncaught ReferenceError: Cannot access 'web' before initialization
      let web = 'hdms.com'
@@ -158,7 +158,7 @@ null==undefined   // true
 ```js
  	当函数被保存为一个对象的属性时，它就可称为这个对象的方法。当一个方法被调用时，this被绑定到这个对象上。
  	如果调用表达式包含一个提取属性的动作（. 或 []），那么它被称为方法调用
-	
+
     let o = {
         name:'hello',
         sayName(){
@@ -167,10 +167,10 @@ null==undefined   // true
     }
     o.sayName();
     这里的this指向的对象是o，因为调用这个sayName()函数是通过o.sayName()执行的。
-    
-    
-    
-    
+  
+  
+  
+  
     let o={
             name:'hello',
             b:{
@@ -183,10 +183,10 @@ null==undefined   // true
         }
        o.b.sayName();
        因为是o.b调用的这个函数，所以指向b这个对象
-       
-       
-       
-       
+     
+     
+     
+     
     let o = {
         name: 'hello',
         b: {
@@ -197,10 +197,10 @@ null==undefined   // true
     }
     o.b.sayName();
     同理，因为是o.b调用的这个函数，所以指向b这个对象
-    
-    
-    
-    
+  
+  
+  
+  
     let name='外层name'
     let o = {
         name: 'hello',
@@ -221,14 +221,14 @@ null==undefined   // true
 ```js
  	如果在一个函数前面加上new关键字来调用，那么就会创建一个连接到该函数的prototype成员的新对象，
     同时，this会被绑定到这个新对象上。这种情况下，这个函数就可以成为此对象的构造函数。
-	
+
     function Fn() {
         console.log(this);          // Fn {}
     }
     new Fn;                         // 带不带括号都是一样的 目前
 
 
-	
+
     function Fn() {
         this.name = 'hello'
     }
@@ -236,8 +236,8 @@ null==undefined   // true
     console.log(a.name);             // hello
 
     当用new关键字，返回的是一个对象，this指向的就是那个返回的对象；
-    
-    
+  
+  
      // 如果返回的不是对象，this还是指向函数的实例，虽然null属于对象，但是返回null依然指向函数实例
      // 返回空对象 undefined
      function Fn() {
@@ -249,7 +249,7 @@ null==undefined   // true
 
 
 
-	// 返回函数 无返回值    
+	// 返回函数 无返回值  
     function Fn() {
         this.name = 'hello'
         return function () {
@@ -345,7 +345,7 @@ null==undefined   // true
         name: 'world',
         sayName: function () {
            return person1.sayName;
-            
+          
 
         }
     }
@@ -355,7 +355,7 @@ null==undefined   // true
 
     在执行person1.sayName()时，方法调用模式，this代表person1这个对象
     在执行person2.sayName()时，方法调用，但是sayName，并没有执行
-    
+  
 
 
 
@@ -373,7 +373,7 @@ null==undefined   // true
 
 
 
-    
+  
     var A = { n: 4399 };
     var B = function () {
         this.n = 9999
@@ -397,15 +397,13 @@ null==undefined   // true
     执行console.log(c.n)时，c对象没有自己的属性n值，会向原型上查找，找的A对象中的属性n值
 ```
 
-
-
 ### 5. call apply bind
 
 ```js
     Function.prototype.call()
     Function.prototype.apply()
     Function.prototype.bind()		这个不确定
-    
+  
     // call
     let o = { name: '张三' }
     function f(...args) {
@@ -455,7 +453,7 @@ null==undefined   // true
             context = window
         }
         context.fn = this;
-        
+      
         let result = context.fn(...args)
         // 删除fn
         delete context.fn
@@ -473,8 +471,6 @@ null==undefined   // true
 
     f.myCall(obj, 1, 2)   // 123 1 2
 ```
-
-
 
 #### 2. 如何实现一个apply
 
@@ -506,8 +502,6 @@ null==undefined   // true
     f.myApply(obj, [1, 2])   // 123 1 2
 ```
 
-
-
 #### 3. 如何实现一个bind
 
 ```js
@@ -534,8 +528,6 @@ null==undefined   // true
     f.myBind(obj, 1, 2)(3, 4);   // 123 1 2 3 4
 
 ```
-
-
 
 ### 6.Class
 
@@ -570,17 +562,11 @@ class Person {
     // 2. 类中的方法都是放在原型上的
 ```
 
-
-
 ### 7. JS 中 valueOf() 方法的详解
 
 1. JavaScript 中的 valueOf() 方法用于返回指定对象的原始值，若对象没有原始值，则将返回对象本身。通常由JavaScript内部调用，而不是在代码中显式调用。
-
 2. 默认情况下，valueOf 方法由 Object 后面的每个对象继承。 每个内置的核心对象都会覆盖此方法以返回适当的值。
-
 3. JavaScript 的许多内置对象都重写了该函数，以实现更适合自身的功能需要。因此，不同类型对象的 valueOf() 方法的返回值和返回值类型均可能不同。
-
-   
 
 ```js
 **不同类型对象的 valueOf() 方法的返回值：**
@@ -602,11 +588,9 @@ class Person {
 **Math 和 Error 对象没有 valueOf 方法。**
 ```
 
-
-
 ```js
 
-    
+  
     //1. Array：返回数组对象本身
     var array = ["ABC", true, 12, -5];
     console.log(array.valueOf() === array);   // true
@@ -668,7 +652,7 @@ class Person {
     var obj = { name: "张三", age: 18 };
     console.log(obj.valueOf() === obj);   // true
 
-    
+  
 
 
 
@@ -709,19 +693,15 @@ class Person {
 ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
-
-
 #### 2. keyCode 键->值的映射
 
 ```js
 <input type="text" placeholder="用户名" >
-    
+  
 document.getElementsByTagName('input')[0].onkeyup=function(e){
 console.dir(e.keyCode)  //enter 13  ← ↑ → ↓  37 38 39 40
 }
 ```
-
-
 
 #### 3. chaAt()
 
@@ -730,15 +710,13 @@ console.dir(e.keyCode)  //enter 13  ← ↑ → ↓  37 38 39 40
 ```js
    let str = "我的名字我叫做张三";
    str.charAt(3),   //  子
-    
+  
     // console.log(
-    //    
+    //  
     //     'z'.,           // a 97  z 122  |   A 65 Z 90
 
 
 ```
-
-
 
 #### 4. charCodeAt()
 
@@ -749,8 +727,6 @@ console.dir(e.keyCode)  //enter 13  ← ↑ → ↓  37 38 39 40
 'Z'.charCodeAt()   // 90
 
 ```
-
-
 
 #### 5. slice跟数组相似 截取
 
@@ -767,7 +743,7 @@ console.log(
 
 ```
 
-#### 6. concat 
+#### 6. concat
 
 连接两个字符串 不改变原字符串
 
@@ -789,40 +765,32 @@ console.log(
         '我的名字叫做张三'.endsWith('张三')        // true
 ```
 
-
-
 #### 8. match
 
 ```js
    '我的名字叫做张三我'.match(/我/g),       // [我,我] 
 ```
 
-
-
 #### 9. incudes indexOf lastIndexOf
 
 ```js
 console.log(
-       
+     
 ```
 
-#### 10. repeat 
+#### 10. repeat
 
 ```js
   '我的'.repeat(3) // 我的我的我的 
 ```
 
-
-
-#### 11. search() 
+#### 11. search()
 
 方法在字符串中搜索指定值，并返回匹配的位置
 
 ```js
 '我的名字叫做这姑娘三啊'.search('我的')  0
 ```
-
-
 
 #### 12. substring   substr
 
@@ -833,11 +801,9 @@ console.log(
         strTo,						// 没改变
         strTo.substr(0,3),          // 从0开始 截取3位
         strTo,						// 没改变
-       
+     
     )
 ```
-
-
 
 #### 13. toLocaleUpperCase()...
 
@@ -846,8 +812,6 @@ console.log(
  'Abc'.toLocaleLowerCase()           // abc  方法根据主机的当前语言环境将字符串转换为大写字母
 
 ```
-
-
 
 ## 2. 数组 & 对象
 
@@ -884,8 +848,6 @@ console.log(arr, arr2)            //  [1] [2,3]
     console.log(arr, a)                    // [1,2,3,1,2] 
 ```
 
-
-
 #### 4. unShift()
 
 ```js
@@ -893,8 +855,6 @@ console.log(arr, arr2)            //  [1] [2,3]
     let a = arr.unshift(...[9, 10])           // 返回数组的长度 5  改变原数组   头部添加
     console.log(arr, a)         // [9,10,2,3,1]  5
 ```
-
-
 
 #### 5. pop()
 
@@ -913,21 +873,19 @@ console.log(arr, arr2)            //  [1] [2,3]
     console.log(arr, a)          // [3,1]  2
 ```
 
-
-
-### 1. Array   
+### 1. Array
 
   扩展运算符
-​     Array.from()
-​     Array.of()
-​     数组实例的 copyWithin()
-​     数组实例的 find() 和 findIndex()
-​     数组实例的 fill()
-​     数组实例的 entries()，keys() 和 values()
-​     数组实例的 includes()
-​     数组实例的 flat()，flatMap()
-​     数组的空位
-​     Array.prototype.sort() 的排序稳定
+     Array.from()
+     Array.of()
+     数组实例的 copyWithin()
+     数组实例的 find() 和 findIndex()
+     数组实例的 fill()
+     数组实例的 entries()，keys() 和 values()
+     数组实例的 includes()
+     数组实例的 flat()，flatMap()
+     数组的空位
+     Array.prototype.sort() 的排序稳定
 
 #### 1. 扩展运算符
 
@@ -1124,7 +1082,7 @@ console.log(arr, arr2)            //  [1] [2,3]
 
 ```js
 	Array.from方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6    	 新增的数据结构 Set 和 Map）。
-       
+     
 
     1. 下面是一个类似数组的对象，Array.from将它转为真正的数组。
     let arrayLike = {
@@ -1152,7 +1110,7 @@ console.log(arr, arr2)            //  [1] [2,3]
     console.log(divList);                          // NodeList(3) [div.div, div.div, div.div]
     divList.map(item => console.log(item))         // divList.map is not a function   divList不是真正的数组
 
-    for (const item of divList) {        
+    for (const item of divList) {      
             console.log(item);                         // 输出三个div Dom元素
     }
 
@@ -1168,7 +1126,7 @@ console.log(arr, arr2)            //  [1] [2,3]
 
     (2) arguments 对象
     function agrs() {
-        console.log(arguments);// Arguments(3) [123, 456, Array(3), callee: ƒ,  Symbol(Symbol.iterator): ƒ]	
+        console.log(arguments);// Arguments(3) [123, 456, Array(3), callee: ƒ,  Symbol(Symbol.iterator): ƒ]
         console.log(Array.from(arguments));     // [123, 456, Array(3)]
     }
     agrs(123,456,[1,2,3])
@@ -1272,7 +1230,7 @@ console.log(arr, arr2)            //  [1] [2,3]
 
 ```js
 	// 1. Array.prototype.find()
-    
+  
     let arr = [1, 5, 10, 15];
     let a = arr.find((value, index, arr) => {
         arr[index] += 1
@@ -1284,7 +1242,7 @@ console.log(arr, arr2)            //  [1] [2,3]
 
 
     // 2. Array.prototype.findIndex()
-    
+  
     let arr = [1, 5, 10, 15];
     let a = arr.findIndex((value, index, arr) => {
         return value > 9;
@@ -1295,7 +1253,7 @@ console.log(arr, arr2)            //  [1] [2,3]
 
 
     // 3. 可以绑定第二个参数
-    
+  
     function f(v) {
         return v > this.age;
     }
@@ -1308,7 +1266,7 @@ console.log(arr, arr2)            //  [1] [2,3]
 
 
     // 4. 和indexOf的区别
-    
+  
     console.log([NaN].indexOf(NaN));                        // -1  
     console.log([NaN].findIndex(y => Object.is(NaN, y)));   // 0
     上面代码中，indexOf方法无法识别数组的NaN成员，但是findIndex方法可以借助Object.is方法做到。
@@ -1401,10 +1359,10 @@ console.log(arr, arr2)            //  [1] [2,3]
  		[1, 2, [3, 4]].flat(),          // [1, 2, 3, 4]  
         [1, 2, [3, [4, 5]]].flat(),     // [1, 2, 3, [4, 5]]
         [1, 2, [3, [4, 5]]].flat(2),    // [1, 2, 3, 4, 5] 
-        
+      
         如果不管有多少层嵌套，都要转成一维数组，可以用Infinity关键字作为参数。
         [1, [2, [3]]].flat(Infinity),   // [1, 2, 3]
-        
+      
         如果原数组有空位，flat()方法会跳过空位。
         [1, 2, , 4, 5].flat(),           // [1, 2, 4, 5]
         Array.from([1, 2, , 4, 5]).flat(),  // [1, 2, undefined, 4, 5]
@@ -1413,7 +1371,7 @@ console.log(arr, arr2)            //  [1] [2,3]
  flatMap()只能展开一层数组。
         相当于 [[[2]], [[4]], [[6]], [[8]]].flat()
         [1, 2, 3, 4].flatMap(x => [[x * 2]])          // [[2], [4], [6], [8]]
-        
+      
         arr.flatMap(function callback(currentValue[, index[, array]]) {
         // ...
     }[, thisArg])
@@ -1425,7 +1383,7 @@ console.log(arr, arr2)            //  [1] [2,3]
  	// forEach(), filter(), reduce(), every() 和some()都, flat() 会跳过空位。
     // map()会跳过空位，但会保留这个值
     // join()和toString()会将空位视为undefined，而undefined和null会被处理成空字符串。
-    
+  
     console.log(
         // //forEach方法
         // [, 'a'].forEach((x, i) => console.log(i)), // 1
@@ -1517,12 +1475,6 @@ let cv = a.includes(4); // false
  console.log(fn(1,2,3));			// 计算和
 ```
 
-
-
-
-
-
-
 ### 2. Object
 
 #### 1. 属性的简洁表示法
@@ -1564,11 +1516,11 @@ let cv = a.includes(4); // false
 
 
 
-    
+  
     // 3. 属性的赋值器（setter）和取值器（getter），事实上也是采用这种写法。
     const cart = {
         _wheels: 4,
-        
+      
         get wheels() {
             return this._wheels;
         },
@@ -1584,7 +1536,7 @@ let cv = a.includes(4); // false
 
 
 
-    
+  
     // 4.注意，简写的对象方法不能用作构造函数，会报错。
     const obj = {
         f() {
@@ -1597,8 +1549,6 @@ let cv = a.includes(4); // false
     new obj.f() //  Uncaught TypeError: obj.f is not a constructor
 
 ```
-
-
 
 #### 2. 属性名表达式
 
@@ -1631,7 +1581,7 @@ let cv = a.includes(4); // false
             return 'hi';
         }
     };
-    
+  
     obj.hello() // hi
 
    
@@ -1666,8 +1616,6 @@ let cv = a.includes(4); // false
     );
 ```
 
-
-
 #### 3. 方法的name属性
 
 ```
@@ -1695,7 +1643,7 @@ let cv = a.includes(4); // false
     obj.foo.name     // TypeError: Cannot read property 'name' of undefined
 
     const descriptor = Object.getOwnPropertyDescriptor(obj, 'foo');
-    
+  
     descriptor.get.name  // "get foo"
     descriptor.set.name  // "set foo"
 
@@ -1705,11 +1653,11 @@ let cv = a.includes(4); // false
    
     // 3. 有两种特殊情况:bind方法创造的函数，(1) name属性返回bound加上原函数的名字；
     // (2) Function构造函数创造的函数，name属性返回anonymous。
-    
+  
     var doSomething = function () { };
-    
+  
     doSomething.bind().name      // "bound doSomething"
-    
+  
     new Function().name          // "anonymous"
 
 
@@ -1728,8 +1676,6 @@ let cv = a.includes(4); // false
 
 
 ```
-
-
 
 #### 4. 属性的可枚举性和遍历
 
@@ -1769,16 +1715,16 @@ let cv = a.includes(4); // false
 	// (2)
     Object.getOwnPropertyDescriptor(Object.prototype, 'toString').enumerable		// false
     Object.getOwnPropertyDescriptor([], 'length').enumerable						// false
-    
+  
     上面代码中，toString和length属性的enumerable都是false，因此for...in不会遍历到这两个继承自原型的属性。另外，ES6 规定，	   所有 Class 的原型的方法都是不可枚举的。
-    
-    
-    
+  
+  
+  
 	// (3)
     Object.getOwnPropertyDescriptor(class { foo() { } }.prototype, 'foo').enumerable // false
    
     总的来说，操作中引入继承的属性会让问题复杂化，大多数时候，我们只关心对象自身的属性。所以，尽量不要用for...in循环，而用		     Object.keys()代替。
-    
+  
 
 
      // 2. 属性的遍历
@@ -1787,7 +1733,7 @@ let cv = a.includes(4); // false
     （1）for...in												(1)对象自身可枚举 (2) 继承可枚举
      for...in循环遍历对象自身的和继承的可枚举属性（不含 Symbol 属性）。 
 
-    （2）Object.keys(obj)										(1)对象自身可枚举	
+    （2）Object.keys(obj)										(1)对象自身可枚举
      Object.keys返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含 Symbol 属性）的键名。
 
     （3）Object.getOwnPropertyNames(obj)						(1)对象自身所有属性(包括不可枚举)
@@ -2087,8 +2033,6 @@ let cv = a.includes(4); // false
     上面例子中，取值函数get在扩展a对象时会自动执行，导致报错。
 ```
 
-
-
 #### 7. AggregateError 错误对象
 
 ```js
@@ -2133,24 +2077,6 @@ let cv = a.includes(4); // false
         console.log(e.name);                      // "AggregateError"
         console.log(e.errors);                    // [ Error: "some error" ]
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## 3. 高级部分
 
@@ -2216,7 +2142,7 @@ new Promise((resolve, reject) => {
         return new Promise((resolve, reject) => {
             resolve(err)
         });
-        
+      
     }).then(a=>{
         console.log("a",a)
     },b=>{
@@ -2331,9 +2257,9 @@ new Promise((resolve, reject) => {
     // b 123
     // resolve undefined
     // 如果返回的promsie里面的状态自己处理了 ,那么接下来的then就不处理了
-    
-    
-    
+  
+  
+  
     //没有返回promise
     new Promise((resolve, reject) => {
         reject('123')
@@ -2348,11 +2274,11 @@ new Promise((resolve, reject) => {
     }).catch(error=>{
         console.log('catch',error);
     })
-    
+  
     // a, undefined   Uncaught (in promise) 456 
 ```
 
-####  11. then处理与没有处理的情况
+#### 11. then处理与没有处理的情况
 
 ```js
 // 处理了情况
@@ -2361,9 +2287,9 @@ new Promise((resolve, reject) => {
     }).then(a=>{}).then().then(resolve => {
         console.log(resolve);
     }).catch(a => console.log(a))
-    
+  
 // undefined
-    
+  
 // 没有处理的情况
 new Promise((resolve, reject) => {
          resolve('123')
@@ -2371,7 +2297,7 @@ new Promise((resolve, reject) => {
          console.log(resolve);
     }).catch(a => console.log(a))
 
-//123  为什么不是undefined  因为第一个then和第二个then都没有处理    
+//123  为什么不是undefined  因为第一个then和第二个then都没有处理  
 ```
 
 #### 12. then默认是成功的
@@ -2385,12 +2311,12 @@ new Promise((resolve, reject) => {
         console.log('a', a);
     }, b => {
         console.log('b', b);
-    })       
+    })     
    // a,失败
    // then默认是成功 虽然走的是catch 但是走的并不是 b回调
 ```
 
-#### 13. then两种写法区别  
+#### 13. then两种写法区别
 
 ```js
 // 两个回调函数的写法
@@ -2514,7 +2440,7 @@ const promise = new Promise(function (resolve, reject) {
     });
     // catch不仅可以捕获promise函数体内的错误 也可以捕获then里面的错误
     // '错误',ab is not defined 
-    
+  
 ```
 
 #### 18. 状态一经改变无法回退
@@ -2529,8 +2455,8 @@ const promise = new Promise(function (resolve, reject) {
         console.log('error', error);
     });
     // error Error: test 状态一经改变 无法回退
-    
-    
+  
+  
    // 2.
       const promise = new Promise((resolve, reject) => {
         throw new Error('tests')
@@ -2544,8 +2470,8 @@ const promise = new Promise(function (resolve, reject) {
         console.log('error', error);
     });
     // error Error: tests  虽然setTimeout改变了状态 但是promise已经结束了
-    
-    
+  
+  
     // 3.
      const promise = new Promise((resolve, reject) => {
         resolve('ok');
@@ -2573,7 +2499,7 @@ const promise = new Promise(function (resolve, reject) {
 // (2)只要p1、p2、p3之中有一个被rejected， p的状态就变成rejected，此时第一个被reject的实例的返回值，会传递给p的回调函数。
 // 总结 全部成功才调用回调   有一个失败就失败 
 // 注意，如果作为参数的 Promise 实例，自己定义了catch方法，那么它一旦被rejected，并不会触发Promise.all()的catch方法。
-    
+  
     const p1 = new Promise((resolve, reject) => {
         resolve('hello');
     })
@@ -2610,8 +2536,6 @@ const promise = new Promise(function (resolve, reject) {
     p.then(console.log).catch(console.error);
     上面代码中，如果 5 秒之内fetch方法无法返回结果，变量p的状态就会变为rejected，从而触发catch方法指定的回调函数。
 ```
-
-
 
 #### 21. Promise.allSettled
 
@@ -2668,16 +2592,16 @@ const promise = new Promise(function (resolve, reject) {
 
 ```js
     有时候需要将现有对象转为 Promise 对象，Promise.resolve()方法就起到这个作用  参数分为四种情况
-    
+  
     （1）参数是一个 Promise 实例
     	如果参数是 Promise 实例，那么Promise.resolve将不做任何修改、原封不动地返回这个实例。
-    	
+  
     （2）参数是一个thenable对象
     	thenable对象指的是具有then方法的对象，比如下面这个对象。
-    	
+  
     （3）参数不是具有then()方法的对象，或根本就不是对象
     	如果参数是一个原始值，或者是一个不具有then()方法的对象，则Promise.resolve()方法返回一个新的 Promise 对象，状态为		resolved。
-    	
+  
     (4) 不带有任何参数
     	Promise.resolve()方法允许调用时不带参数，直接返回一个resolved状态的 Promise 对象。
     	所以，如果希望得到一个 Promise 对象，比较方便的方法就是直接调用Promise.resolve()方法。
@@ -2721,8 +2645,8 @@ const promise = new Promise(function (resolve, reject) {
     // console.log('next');
     // next
     // now
-    
-    
+  
+  
     // const f = () => console.log('now');
     // (
     //     () => new Promise(
@@ -2749,7 +2673,7 @@ const promise = new Promise(function (resolve, reject) {
      Promise.reject(reason)方法也会返回一个新的 Promise 实例，该实例的状态为rejected。
      Promise.reject().catch(e=>console.log(e))           //undefined
      console.log(123456);
-    
+  
     // 123456
     // undefined		在本轮事件的末尾执行 resolve也是一样的
 
@@ -2788,8 +2712,6 @@ function loadingIMg(path) {
         }
     })()
 ```
-
-
 
 ### 2. 构造函数 、原型、继承
 
@@ -2843,7 +2765,7 @@ function loadingIMg(path) {
 	javaScript的构造函数中可以添加一些成员,可以在构造函数本身上添加,也可以在构造函数内部的this上添加,通过这两种方式添加的成员分别是静态成员和实例成员
 	* 静态成员: 在构造函数本身上添加的成员称为静态成员,只能由构造函数本身来访问
 	* 实例成员: 在构造函数内部创建的对象称为实例成员,只能由实例化的对象来访问
-    
+  
 	// 2. 实例成员与静态成员
     // 构造函数中的属性和方法我们称为成员,成员可以添加
     function Star(uname, age) {
@@ -2871,9 +2793,9 @@ function loadingIMg(path) {
         Star.sex,				   // 男
         // ldh.sex                 // undefined 不能通过对象来访问
     )
-    
-    
-    
+  
+  
+  
 ```
 
 #### 1.3 构造函数的问题
@@ -2881,8 +2803,6 @@ function loadingIMg(path) {
 **构造函数方法很好用,但是存在内存浪费的问题**
 
 ![image-20220108000658085](typora-user-images\image-20220108000658085.png)
-
-
 
 ```java
 继上面的例子:
@@ -2904,11 +2824,9 @@ false
     * 优化: 那么我们应该怎么避免这种情况呢? 
 ```
 
-
-
 #### 1.4 构造函数和原型 prototype
 
-构造函数通过原型分配的函数是所有函数所<span style="color:red">**共享的**</span>
+构造函数通过原型分配的函数是所有函数所`<span style="color:red">`**共享的**
 
 javaScript规定,==每一个构造函数都有一个prototype属性==，指向另一个对象,注意这个prototype就是一个对象,这个对象的所有属性和方法,都被构造函数所拥有.
 
@@ -2934,10 +2852,10 @@ console.dir(Star);
     let ldh = new Star("刘德华", 18);
     let zxy = new Star("张学友", 19);
     Star.sex = "男";
-	
+
 	console.log(ldh.sing);  			// 我会唱歌
     console.log(ldh.sing === zxy.sing); // true
-	
+
 	// 注意: 一般情况下,我们的公共属性定义到构造函数中,公共的方法我们放到原型对象上
 ```
 
@@ -2945,15 +2863,14 @@ console.dir(Star);
 
 1. 原型是什么?
 
-   一个对象,我们也称为prototype为  <span style="color:red">**原型对象**</span>
-
+   一个对象,我们也称为prototype为  `<span style="color:red">`**原型对象**
 2. 原型的作用是什么?
 
-   <span style="color:red">**共享方法**</span>
+   `<span style="color:red">`**共享方法**
 
 #### 1.5 对象原型_ _proto_ _
 
-<span style="color:red">**上面例子 sing是定义在构造函数Star的原型对象身上的 为什么实例对象ldh可以访问呢？**</span>
+`<span style="color:red">`**上面例子 sing是定义在构造函数Star的原型对象身上的 为什么实例对象ldh可以访问呢？**
 
 对象都有一个属性_ _proto_ _指向构造函数的prototype原型对象,之所以我们对象可以使用构造函数prototype原型对象的属性和方法,就是因为对象有_ _ _proto_ _的存在
 
@@ -2986,8 +2903,8 @@ console.info(ldh);
 
 ```
 
-* <span style="color:red">**_ _proto_ _对象原型和原型对象prototype是等价的**</span>
-* <span style="color:red">**_ _proto_ _对象原型的意义就在于为对象的查找机制提供了一个方向，或者说一条线路,但是它是一个非标准的属性,因此实际开发中，不可以使用这个属性,他只是内部指向原型对象的prototype**</span>
+* `<span style="color:red">`**_ _proto_ _对象原型和原型对象prototype是等价的**
+* `<span style="color:red">`**_ _proto_ _对象原型的意义就在于为对象的查找机制提供了一个方向，或者说一条线路,但是它是一个非标准的属性,因此实际开发中，不可以使用这个属性,他只是内部指向原型对象的prototype**
 * **下图说明**
 
 ![image-20220108145110313](typora-user-images\image-20220108145110313.png)
@@ -3002,7 +2919,7 @@ console.info(ldh);
 console.log(ldh.__proto__);
 console.log(Star.prototype);
 
-console.log(ldh.__proto__.constructor );					
+console.log(ldh.__proto__.constructor );				
 console.log(Star.prototype.constructor );
 
 
@@ -3055,13 +2972,13 @@ console.log(Star.prototype.constructor );
 
 ![image-20220108171722293](typora-user-images\image-20220108171722293.png)
 
-<span style="color:red">**每个构造函数都有一个对象prototype原型对象, 可是原型对象身上又有一个属性constructor又指回了构造函数,构造函数实例化之后产生了一个对象实例,对象实例身上有一个_ _proto_  _对象原型,又指向了prototype原型对象 所以形成了一个铁三角的关系**</span>
+`<span style="color:red">`**每个构造函数都有一个对象prototype原型对象, 可是原型对象身上又有一个属性constructor又指回了构造函数,构造函数实例化之后产生了一个对象实例,对象实例身上有一个_ _proto_  _对象原型,又指向了prototype原型对象 所以形成了一个铁三角的关系**
 
 #### 1.8 原型链
 
 ![image-20220108174102049](typora-user-images\image-20220108174102049.png)
 
-<span style="color:red">**访问一个对象的属性，如果它自身没有，那么他会根据它自身的_ _proto_ _去构造函数的原型对象prototype上去寻找，如果还是没有，那么继续根据构造函数的_ _proto_ _属性继续寻找，直到object的原型对象，还是没有则返回null, 所以查找一个对象的属性 层层递进的_ _proto_ _ 形成了一个链条，这个链条就是原型链**</span>
+`<span style="color:red">`**访问一个对象的属性，如果它自身没有，那么他会根据它自身的_ _proto_ _去构造函数的原型对象prototype上去寻找，如果还是没有，那么继续根据构造函数的_ _proto_ _属性继续寻找，直到object的原型对象，还是没有则返回null, 所以查找一个对象的属性 层层递进的_ _proto_ _ 形成了一个链条，这个链条就是原型链**
 
 #### 1.9 javaScript的成员查找机制(规则)
 
@@ -3111,7 +3028,7 @@ console.log(Star.prototype.constructor );
 
 ==可以通过原型对象,对原来内置对象进行扩展自定义的方法，比如给数组增加自定义方法的功能==
 
-<span style="color:red">**注意: 数组和字符串内置对象不能给原型对象覆盖操作Array.prototype={},只能使用Array.prototype.xxx=function(){}的方式**</span>
+`<span style="color:red">`**注意: 数组和字符串内置对象不能给原型对象覆盖操作Array.prototype={},只能使用Array.prototype.xxx=function(){}的方式**
 
 ```javascript
     Array.prototype.sum = function () {
@@ -3132,9 +3049,9 @@ console.log(Star.prototype.constructor );
 
 #### 2. 继承
 
-ES6之前并没有给我们提供extends继承,我们可以通过<span style="color:red">**构造函数+原型对象**</span>实现继承，被称为<span style="color:red">**组合继承**</span>
+ES6之前并没有给我们提供extends继承,我们可以通过`<span style="color:red">`**构造函数+原型对象**实现继承，被称为`<span style="color:red">`**组合继承**
 
-<span style="color:red">**(其中构造函数继承属性	原型对象继承方法)**</span>
+`<span style="color:red">`**(其中构造函数继承属性	原型对象继承方法)**
 
 #### 2.1 call()
 
@@ -3169,7 +3086,7 @@ fun.call(thisArg, arg1, arg2)
 
 #### 2.2 借用构造函数继承父类型属性
 
-<span style="color:red">**核心原理: 通过call()把父类型的this指向子类型的this,这样就可以实现子类型继承父类性的属性**</span>
+`<span style="color:red">`**核心原理: 通过call()把父类型的this指向子类型的this,这样就可以实现子类型继承父类性的属性**
 
 ```java
 	// 2. 借用父构造函数继承属性
@@ -3210,7 +3127,7 @@ fun.call(thisArg, arg1, arg2)
     }
 
     // Zi.prototype = Fu.prototype;       // 这样赋值有问题,直接把父原型对象赋值给子原型对象,那么f身上也有了z的方法
-    Zi.prototype = new Fu(); 			// 参考 x           
+    Zi.prototype = new Fu(); 			// 参考 x         
     Zi.prototype.constructor = Zi;
     Zi.prototype.exam = function () {
         return "考试";
@@ -3377,7 +3294,6 @@ Javascript语言的特殊之处，就在于函数内部可以直接读取全局�
 >
 > 　　alert(object.getNameFunc()());
 
-
 代码片段二。
 
 > 　　var name = "The Window";
@@ -3472,15 +3388,11 @@ Javascript语言的特殊之处，就在于函数内部可以直接读取全局�
     document.addEventListener('mousemove', throttling(mouseMove, 3000, true))
 ```
 
-
-
 ## 4.flex
 
 ![](typora-user-images\flex父元素.png)
 
 ![](typora-user-images\flex子元素.png)
-
-
 
 # 二. Vue
 
@@ -3490,57 +3402,55 @@ Javascript语言的特殊之处，就在于函数内部可以直接读取全局�
 
 ```js
 let person = {
-​    name: "张三",
-​    sex: "男",
+    name: "张三",
+    sex: "男",
   }
 Object.defineProperty(person, 'age', {
-​    // value:"18",
-​    // enumerable: true,       //是否可以枚举(遍历)
-​    // writable: false,        //修改
-​    // configurable:true,      //删除
-​    get() {
-​      return number;
-​    },
-​    set(value) {
-​      console.info(value)  
-​      number = value;
-​    }
+    // value:"18",
+    // enumerable: true,       //是否可以枚举(遍历)
+    // writable: false,        //修改
+    // configurable:true,      //删除
+    get() {
+      return number;
+    },
+    set(value) {
+      console.info(value)  
+      number = value;
+    }
   })
 ```
 
 ### 2.事件处理
 
-1.<span style="color:red">prevent  stop(冒泡)   once(只触发一次)</span>    self只有event.target是当前操作的元素才触发事件
+1.`<span style="color:red">`prevent  stop(冒泡)   once(只触发一次)    self只有event.target是当前操作的元素才触发事件
 
 2.passive 事件的默认行为立即执行 无需等待时间回调执行完毕
 
-3.wheel鼠标滚轮 scoll 滚动条 有点区别 
+3.wheel鼠标滚轮 scoll 滚动条 有点区别
 
 4.enter 回车 delete 删除和退格 退出esc space空格 tab换行 上下左右 up down left right -->
 
-5.系统修饰符 用法特殊 ctrl alt  shift meta 
+5.系统修饰符 用法特殊 ctrl alt  shift meta
 
-​      (1)配合keyup使用按下修饰键的同时 在按下其他键 随后释放其他键 事件才被触发
+    (1)配合keyup使用按下修饰键的同时 在按下其他键 随后释放其他键 事件才被触发
+    
+    (2)配合keydown使用 正常触发事件
+    
+    特殊 tab必须配合 keydown使用 ctrl alt shift meta(win键) 只有ctrl+y才行
 
-​      (2)配合keydown使用 正常触发事件
-
-​       特殊 tab必须配合 keydown使用 ctrl alt shift meta(win键) 只有ctrl+y才行
-
-<span style="color:red">具体的参考Vue 代码 01VueDay==> 事件处理</span>
+`<span style="color:red">`具体的参考Vue 代码 01VueDay==> 事件处理
 
 ### 3.计算属性与监听
 
-
-
 ```js
  computed:{
-​      // fullName:{
-​      //   //get什么时候调用 :1.初次调用时 2.所依赖的数据发生改变
-​      //   get(){
-​      //     return xxx;
-​      //   },
-​      //   //当fullName被修改时
-​      //   set(value){}
+      // fullName:{
+      //   //get什么时候调用 :1.初次调用时 2.所依赖的数据发生改变
+      //   get(){
+      //     return xxx;
+      //   },
+      //   //当fullName被修改时
+      //   set(value){}
 ```
 
 注意:
@@ -3572,7 +3482,7 @@ Object.defineProperty(person, 'age', {
         // }
 ```
 
-如果有异步任务 就得用watch computed貌似不行  
+如果有异步任务 就得用watch computed貌似不行
 
 ### 4.样式
 
@@ -3593,7 +3503,7 @@ Object.defineProperty(person, 'age', {
                     font: 'font'
                 },
                 styleObj: {
-                    fontSize: 50 + 'px',			
+                    fontSize: 50 + 'px',		
                     backgroundColor: 'skyblue'
                 }
             }
@@ -3608,21 +3518,21 @@ Object.defineProperty(person, 'age', {
 
 ```vue
 		<button @click="n++">n++</button>
-		
+	
 		//以下三个方法为 可以这样写 跟这个例子无关
 		<button @click="sortType=2">升序</button>
         <button @click="sortType=1">降序</button>
         <button @click="sortType=0">原顺序</button>
-        
+      
         //v-show
         <div class="div" v-show='n===1'>angular</div> 
-       	
+     
        	// v-if
         <div class="div" v-if='n===1'>angular</div> 
         <div class="div" v-else-if='n===2'>react</div> 
         <div class="div" v-else-if='n===3'>Vue</div> 
         <div class="div" v-else>VueMax</div> 
-        
+      
         <!-- template只能用 v-if  template不破坏数据结构 -->
         <template v-if="n===1">
             <div class="div">angular</div> 
@@ -3683,7 +3593,7 @@ v-pre			//v-pre速度更快 不解析
 <button @click="n++">n++</button>
 <br />
 <input type="text" v-fbind:value="n">
-        
+      
 Vue.directive('big-number', (element, binding) => {
         console.log(this);  //window  指令中的this 时window
         element.innerText = binding.value * 20;
@@ -3730,7 +3640,7 @@ Vue.directive('big-number', (element, binding) => {
 
 ```js
  this.$destroy();  调用 beforeDestroy 和destroyed的函数 可以在里面做一些清除定时器 取消订阅消息等等操作
- 			
+ 		
 ```
 
 ### 10. vue检测数组 ，对象的原理
@@ -3755,11 +3665,11 @@ Vue.directive('big-number', (element, binding) => {
                 }
  			 }
         },
-         
+       
           this.arr[0] = 10;         //X  
           this.arr.splice(0,1,10);  //√
           this.$set(this.arr,0,100) //√			//把第0个替换成100
-               
+             
             updateMei() {
                 let obj = { id: '001', name: '马老师', age: 50 }
                 //对象地址 发生了改变 就不行了
@@ -3768,13 +3678,13 @@ Vue.directive('big-number', (element, binding) => {
                 this.persons[0].id = '001';
                 this.persons[0].name = '马老师';
                 this.persons[0].age = 50;
-                
+              
                 // 这个改变的是原数组 所以地址没有发生改变  所以可以
                 // this.persons.splice(0,1,obj);    //√ 
 
             }
         },
-        //对象不牵扯 改变地址什么的	
+        //对象不牵扯 改变地址什么的
         // this.student={}						 // √
         // this.student.sex='男';     		    // X	添加没有的属性会错误  
         // Vue.set(this.student, 'sex', '男');   // √  添加一个新的属性 sex 值为男
@@ -3807,8 +3717,6 @@ let data = {
     }
 ```
 
-
-
 ## 2. 路由
 
 ### 1.路由配置
@@ -3819,37 +3727,35 @@ let data = {
 new VueRouter({
   routes:[
      { path: '/', redirect: '/login' },
-​    {
-​      path:'/about',
-​      component:About
+    {
+      path:'/about',
+      component:About
 
-​    },
-​    {
-​      path:'/home',
-​      component:Home,
-​      children:[   			//children中 如果有redirect path得写 /  没有则 path中 不写 / 
-​        {
-​           path:'news',
-​           component:News
-​        },
-​        {
-​          path:'message',
-​          component:Message,
-​          children:[						query配置
-​            { 
+    },
+    {
+      path:'/home',
+      component:Home,
+      children:[   			//children中 如果有redirect path得写 /  没有则 path中 不写 / 
+        {
+           path:'news',
+           component:News
+        },
+        {
+          path:'message',
+          component:Message,
+          children:[						query配置
+            { 
 			   name:'detail',     //给路由命名
-​              path:'detail',
-​              component:Detail
-​            }
-​          ]
-​        },
-​      ]
-​    },
+              path:'detail',
+              component:Detail
+            }
+          ]
+        },
+      ]
+    },
   ]
 })
 ```
-
-
 
 ### 2.路由的query传参
 
@@ -3857,16 +3763,16 @@ new VueRouter({
 
 ```
 {
-​          path:'message',
-​          component:Message,
-​          children:[
-​            {  
+          path:'message',
+          component:Message,
+          children:[
+            {  
 			   name:'detail',     //给路由命名
-​              path:'detail',     
-​              component:Detail
-​            }
-​          ]
-​        },
+              path:'detail',   
+              component:Detail
+            }
+          ]
+        },
 ```
 
 2.传递参数:
@@ -3887,7 +3793,7 @@ new VueRouter({
     \></router-link>
 ```
 
-​	2.接收参数：
+    2.接收参数：
 
 ```
 $route.query.id
@@ -3900,16 +3806,16 @@ $route.query.title
 
 ```
 {
-​          path:'message',
-​          component:Message,
-​          children:[
-​            {  
+          path:'message',
+          component:Message,
+          children:[
+            {  
 			   name:'detail',     //给路由命名
-​              path:'detail',	  //children中的path 都不写/ 
-​              component:Detail
-​            }
-​          ]
-​        },
+              path:'detail',	  //children中的path 都不写/ 
+              component:Detail
+            }
+          ]
+        },
 ```
 
 2.简化跳转
@@ -3928,34 +3834,34 @@ $route.query.title
 
 ```json
 {
-​          path:'message',
-​          component:Message,
-​          children:[
-​            {  
+          path:'message',
+          component:Message,
+          children:[
+            {  
 			   name:'detail',     //给路由命名
-​              path:'detail/:id/:title',      //params占位
-​              component:Detail
-​            }
-​          ]
-​        },
+              path:'detail/:id/:title',      //params占位
+              component:Detail
+            }
+          ]
+        },
 ```
 
 2.路由传参
 
 ```json
 	 <!-- 跳转并携带params参数, to的字符串写法 -->
-​    <!-- <router-link :to="`/home/message/detail/${val.id}/${val.title}`">{{val.title}}</router-link> -->
+    <!-- <router-link :to="`/home/message/detail/${val.id}/${val.title}`">{{val.title}}</router-link> -->
 
-​    <!-- 跳转并携带params参数, to的字对象写法 -->
-​    <router-link
-​     :to="{
-​       name:'detail',   //params只能用name
-​       params:{
-​        id:val.id,
-​        title:val.title
-​      }
-​     }"
-​    \>跳转</router-link>
+    <!-- 跳转并携带params参数, to的字对象写法 -->
+    <router-link
+     :to="{
+       name:'detail',   //params只能用name
+       params:{
+        id:val.id,
+        title:val.title
+      }
+     }"
+    \>跳转</router-link>
 
 ```
 
@@ -3966,39 +3872,37 @@ $route.params.id
 $route.params.title
 ```
 
-**<span style="color:red">需要特别注意: 使用params对象写法时候 不能用path 配置项 必须使用name</span>**
+**`<span style="color:red">`需要特别注意: 使用params对象写法时候 不能用path 配置项 必须使用name**
 
 ### 5. 路由的props配置
 
 作用:让路由组件更方便的接收到参数
 
-
-
 ```js
 {
-​              name: 'detail',           		//给路由命名
-​              path: 'detail/:id/:title',       //params占位
-​              component: Detail,
-​              
+              name: 'detail',           		//给路由命名
+              path: 'detail/:id/:title',       //params占位
+              component: Detail,
+            
 			   //路由的props配置
 
-​              //第一种写法 props为对象,该对象中所有的key value 的组合最终都会通过props传递给Detail组件
-​              // props: { a: 1, b: 2 },
-​              
+              //第一种写法 props为对象,该对象中所有的key value 的组合最终都会通过props传递给Detail组件
+              // props: { a: 1, b: 2 },
+            
 			   //第二种写法 props为bool值 bool为true 则把路由收到的所有的params参数值通过props传给Detail组件 注意:只能                //是params的参数
-​              // props: true,
-​              
+              // props: true,
+            
 			   //第三种写法 props为函数,该函数返回的对象中每一组key value都会通过props传给detail组件 这个可以是		                  //query,params
-​              
+            
 				props(route) {
-​                return {
-​                  id: route.query.id,
-​                  title: route.query.title,
-​                  a: 1,
-​                  b: 2
-​                }
-​              }
-​            }
+                return {
+                  id: route.query.id,
+                  title: route.query.title,
+                  a: 1,
+                  b: 2
+                }
+              }
+            }
 ```
 
 2.组件接收
@@ -4017,15 +3921,13 @@ export default {
 
 2.浏览器的历史记录有两种写入方式 :分别是 push和 replace, push是追加历史记录 replace是替换 当前记录 路由跳转时 默认为push
 
-3.如何开启 replace模式 <router-link replace to="">
+3.如何开启 replace模式 `<router-link replace to="">`
 
 ### 7. 编程式路由导航
 
-1.作用: 不借助 <router-link></router-link> 实现路由跳转，让路由跳转更加灵活
+1.作用: 不借助 `<router-link></router-link>` 实现路由跳转，让路由跳转更加灵活
 
 2.具体使用
-
-  
 
 ```vue
 <button @click='$router.back()'>后退</button>
@@ -4072,9 +3974,9 @@ export default {
 
 ### 9.两个新的生命周期钩子
 
-​	1.作用: 路由组件所独有的两个钩子，用于捕获路由组件的激状态
-
-​	2.具体名字:
+    1.作用: 路由组件所独有的两个钩子，用于捕获路由组件的激状态
+    
+    2.具体名字:
 
 ```
 1.activated 路由组件被激活时触发
@@ -4085,23 +3987,23 @@ export default {
 
 1.作用: 对路由进行权限控制
 
-2.分类： <span style="color:red">全局守卫</span>  <span style="color:blue">独享守卫 </span> <span style="color:green">组件内守卫</span>
+2.分类： `<span style="color:red">`全局守卫  `<span style="color:blue">`独享守卫  `<span style="color:green">`组件内守卫
 
-1.<span style="background-color:red">**全局守卫**</span> 
+1.`<span style="background-color:red">`**全局守卫**
 
 ```
 //全局前置守卫 初始化执行 每次路由切换前都执行
 router.beforeEach((to, from, next) => {
   if (to.meta.isAuth) {		//判断当前路由是否需要权限控制
-​    if (localStorage.getItem('school')) {	
-​      next();				//放行
-​    } else {
-​      alert("没有权限")
-​      // next({ name: 'about' })
-​    }
+    if (localStorage.getItem('school')) {
+      next();				//放行
+    } else {
+      alert("没有权限")
+      // next({ name: 'about' })
+    }
   }
   else {
-​    next();
+    next();
   }
 })
 //全局前置守卫 初始化执行 每次路由切换后都执行
@@ -4111,35 +4013,35 @@ router.afterEach((to, from) => {
 })
 ```
 
-2.<span style="background-color:blue">**独享守卫** </span>
+2.`<span style="background-color:blue">`**独享守卫** 
 
-作用: 只是这一个路由需要守卫 
+作用: 只是这一个路由需要守卫
 
 用法:这个跟全局后置路由守卫配合
 
 ```
  {
-​          name: 'news',
-​          path: 'news',
-​          component: News,
-​          meta: { isAuth: true, title: '新闻' },
-​          //路由独享守卫
-​          beforeEnter: (to, from, next) => {
-​            if (to.meta.isAuth) {
-​              if (localStorage.getItem('schools')) {
-​                next();
-​              } else {
-​                alert("没有权限")
-​              }
-​            }
-​            else {
-​              next();
-​            }
-​          },
-​        },
+          name: 'news',
+          path: 'news',
+          component: News,
+          meta: { isAuth: true, title: '新闻' },
+          //路由独享守卫
+          beforeEnter: (to, from, next) => {
+            if (to.meta.isAuth) {
+              if (localStorage.getItem('schools')) {
+                next();
+              } else {
+                alert("没有权限")
+              }
+            }
+            else {
+              next();
+            }
+          },
+        },
 ```
 
-3.<span style="background-color:green">**组件内守卫**</span>
+3.`<span style="background-color:green">`**组件内守卫**
 
 作用：某一个组件想用这个守卫 news新闻组件 在组件内写的 也是与afterEach(全局后置守卫配合)
 
@@ -4147,10 +4049,10 @@ router.afterEach((to, from) => {
  beforeRouteEnter(to, from, next) {
   if (to.meta.isAuth) {
    if (localStorage.getItem("school")) {
-​    next();
+    next();
    } else {
-​    alert("没有权限");
-​    next("/");
+    alert("没有权限");
+    next("/");
    }
   } else {
    next();
@@ -4163,28 +4065,26 @@ router.afterEach((to, from) => {
  }
 ```
 
-
-
 ## 3. Vue脚手架
 
-###  脚手架文件结构
+### 脚手架文件结构
 
-	├── node_modules 
-	├── public
-	│   ├── favicon.ico: 页签图标
-	│   └── index.html: 主页面
-	├── src
-	│   ├── assets: 存放静态资源
-	│   │   └── logo.png
-	│   │── component: 存放组件
-	│   │   └── HelloWorld.vue
-	│   │── App.vue: 汇总所有组件
-	│   │── main.js: 入口文件
-	├── .gitignore: git版本管制忽略的配置
-	├── babel.config.js: babel的配置文件
-	├── package.json: 应用包配置文件 
-	├── README.md: 应用描述文件
-	├── package-lock.json：包版本控制文件
+    ├── node_modules
+    ├── public
+    │   ├── favicon.ico: 页签图标
+    │   └── index.html: 主页面
+    ├── src
+    │   ├── assets: 存放静态资源
+    │   │   └── logo.png
+    │   │── component: 存放组件
+    │   │   └── HelloWorld.vue
+    │   │── App.vue: 汇总所有组件
+    │   │── main.js: 入口文件
+    ├── .gitignore: git版本管制忽略的配置
+    ├── babel.config.js: babel的配置文件
+    ├── package.json: 应用包配置文件
+    ├── README.md: 应用描述文件
+    ├── package-lock.json：包版本控制文件
 
 ### 关于不同版本的Vue
 
@@ -4203,21 +4103,17 @@ router.afterEach((to, from) => {
 1. 被用来给元素或子组件注册引用信息（id的替代者）
 2. 应用在html标签上获取的是真实DOM元素，应用在组件标签上是组件实例对象（vc）
 3. 使用方式：
-   1. 打标识：```<h1 ref="xxx">.....</h1>``` 或 ```<School ref="xxx"></School>```
-   2. 获取：```this.$refs.xxx```
+   1. 打标识：``<h1 ref="xxx">.....</h1>`` 或 ``<School ref="xxx"></School>``
+   2. 获取：``this.$refs.xxx``
 
 ### props配置项
 
 1. 功能：让组件接收外部传过来的数据
-
-2. 传递数据：```<Demo name="xxx"/>```
-
+2. 传递数据：``<Demo name="xxx"/>``
 3. 接收数据：
 
-   1. 第一种方式（只接收）：```props:['name'] ```
-
-   2. 第二种方式（限制类型）：```props:{name:String}```
-
+   1. 第一种方式（只接收）：``props:['name'] ``
+   2. 第二种方式（限制类型）：``props:{name:String}``
    3. 第三种方式（限制类型、限制必要性、指定默认值）：
 
       ```js
@@ -4231,11 +4127,11 @@ router.afterEach((to, from) => {
       ```
 
    > 备注：props是只读的，Vue底层会监测你对props的修改，如果进行了修改，就会发出警告，若业务需求确实需要修改，那么请复制props的内容到data中一份，然后去修改data中的数据。
+   >
 
 ### mixin(混入)
 
 1. 功能：可以把多个组件共用的配置提取成一个混入对象
-
 2. 使用方式：
 
    第一步定义混合：
@@ -4250,15 +4146,13 @@ router.afterEach((to, from) => {
 
    第二步使用混入：
 
-   ​	全局混入：```Vue.mixin(xxx)```
-   ​	局部混入：```mixins:['xxx']	```
+       全局混入：``Vue.mixin(xxx)``
+       局部混入：``mixins:['xxx']	``
 
 ### 插件
 
 1. 功能：用于增强Vue
-
 2. 本质：包含install方法的一个对象，install的第一个参数是Vue，第二个以后的参数是插件使用者传递的数据。
-
 3. 定义插件：
 
    ```js
@@ -4277,54 +4171,44 @@ router.afterEach((to, from) => {
        Vue.prototype.$myProperty = xxxx
    }
    ```
-
-4. 使用插件：```Vue.use()```
+4. 使用插件：``Vue.use()``
 
 ### scoped样式
 
 1. 作用：让样式在局部生效，防止冲突。
-2. 写法：```<style scoped>```
+2. 写法：``<style scoped>``
 
 ### webStorage
 
 1. 存储内容大小一般支持5MB左右（不同浏览器可能还不一样）
-
 2. 浏览器端通过 Window.sessionStorage 和 Window.localStorage 属性来实现本地存储机制。
-
 3. 相关API：
 
-   1. ```xxxxxStorage.setItem('key', 'value');```
-      	该方法接受一个键和值作为参数，会把键值对添加到存储中，如果键名存在，则更新其对应的值。
+   1. ``xxxxxStorage.setItem('key', 'value');``
+      该方法接受一个键和值作为参数，会把键值对添加到存储中，如果键名存在，则更新其对应的值。
+   2. ``xxxxxStorage.getItem('person');``
 
-   2. ```xxxxxStorage.getItem('person');```
+          该方法接受一个键名作为参数，返回键名对应的值。
+   3. ``xxxxxStorage.removeItem('key');``
 
-      ​		该方法接受一个键名作为参数，返回键名对应的值。
+          该方法接受一个键名作为参数，并把该键名从存储中删除。
+   4. `` xxxxxStorage.clear()``
 
-   3. ```xxxxxStorage.removeItem('key');```
-
-      ​		该方法接受一个键名作为参数，并把该键名从存储中删除。
-
-   4. ``` xxxxxStorage.clear()```
-
-      ​		该方法会清空存储中的所有数据。
-
+          该方法会清空存储中的所有数据。
 4. 备注：
 
    1. SessionStorage存储的内容会随着浏览器窗口关闭而消失。
    2. LocalStorage存储的内容，需要手动清除才会消失。
-   3. ```xxxxxStorage.getItem(xxx)```如果xxx对应的value获取不到，那么getItem的返回值是null。
-   4. ```JSON.parse(null)```的结果依然是null。
+   3. ``xxxxxStorage.getItem(xxx)``如果xxx对应的value获取不到，那么getItem的返回值是null。
+   4. ``JSON.parse(null)``的结果依然是null。
 
 ### 组件的自定义事件
 
-1. 一种组件间通信的方式，适用于：<strong style="color:red">子组件 ===> 父组件</strong>
-
-2. 使用场景：A是父组件，B是子组件，B想给A传数据，那么就要在A中给B绑定自定义事件（<span style="color:red">事件的回调在A中</span>）。
-
+1. 一种组件间通信的方式，适用于：`<strong style="color:red">`子组件 ===> 父组件`</strong>`
+2. 使用场景：A是父组件，B是子组件，B想给A传数据，那么就要在A中给B绑定自定义事件（`<span style="color:red">`事件的回调在A中）。
 3. 绑定自定义事件：
 
-   1. 第一种方式，在父组件中：```<Demo @atguigu="test"/>```  或 ```<Demo v-on:atguigu="test"/>```
-
+   1. 第一种方式，在父组件中：``<Demo @atguigu="test"/>``  或 ``<Demo v-on:atguigu="test"/>``
    2. 第二种方式，在父组件中：
 
       ```js
@@ -4334,21 +4218,15 @@ router.afterEach((to, from) => {
          this.$refs.xxx.$on('atguigu',this.test)
       }
       ```
-
-   3. 若想让自定义事件只能触发一次，可以使用```once```修饰符，或```$once```方法。
-
-4. 触发自定义事件：```this.$emit('atguigu',数据)```		
-
-5. 解绑自定义事件```this.$off('atguigu')```
-
-6. 组件上也可以绑定原生DOM事件，需要使用```native```修饰符。
-
-7. 注意：通过```this.$refs.xxx.$on('atguigu',回调)```绑定自定义事件时，回调<span style="color:red">要么配置在methods中</span>，<span style="color:red">要么用箭头函数</span>，否则this指向会出问题！
+   3. 若想让自定义事件只能触发一次，可以使用 ``once``修饰符，或 ``$once``方法。
+4. 触发自定义事件：``this.$emit('atguigu',数据)``
+5. 解绑自定义事件 ``this.$off('atguigu')``
+6. 组件上也可以绑定原生DOM事件，需要使用 ``native``修饰符。
+7. 注意：通过 ``this.$refs.xxx.$on('atguigu',回调)``绑定自定义事件时，回调`<span style="color:red">`要么配置在methods中，`<span style="color:red">`要么用箭头函数，否则this指向会出问题！
 
 ### 全局事件总线（GlobalEventBus）
 
-1. 一种组件间通信的方式，适用于<span style="color:red">任意组件间通信</span>。
-
+1. 一种组件间通信的方式，适用于`<span style="color:red">`任意组件间通信。
 2. 安装全局事件总线：
 
    ```js
@@ -4360,10 +4238,9 @@ router.afterEach((to, from) => {
        ......
    }) 
    ```
-
 3. 使用事件总线：
 
-   1. 接收数据：A组件想接收数据，则在A组件中给$bus绑定自定义事件，事件的<span style="color:red">回调留在A组件自身。</span>
+   1. 接收数据：A组件想接收数据，则在A组件中给$bus绑定自定义事件，事件的`<span style="color:red">`回调留在A组件自身。
 
       ```js
       methods(){
@@ -4374,22 +4251,17 @@ router.afterEach((to, from) => {
         this.$bus.$on('xxxx',this.demo)
       }
       ```
-
-   2. 提供数据：```this.$bus.$emit('xxxx',数据)```
-
-4. 最好在beforeDestroy钩子中，用$off去解绑<span style="color:red">当前组件所用到的</span>事件。
+   2. 提供数据：``this.$bus.$emit('xxxx',数据)``
+4. 最好在beforeDestroy钩子中，用$off去解绑`<span style="color:red">`当前组件所用到的事件。
 
 ### 消息订阅与发布（pubsub）
 
-1. 一种组件间通信的方式，适用于<span style="color:red">任意组件间通信</span>。
-
+1. 一种组件间通信的方式，适用于`<span style="color:red">`任意组件间通信。
 2. 使用步骤：
 
-   1. 安装pubsub：```npm i pubsub-js```
-
-   2. 引入: ```import pubsub from 'pubsub-js'```
-
-   3. 接收数据：A组件想接收数据，则在A组件中订阅消息，订阅的<span style="color:red">回调留在A组件自身。</span>
+   1. 安装pubsub：``npm i pubsub-js``
+   2. 引入: ``import pubsub from 'pubsub-js'``
+   3. 接收数据：A组件想接收数据，则在A组件中订阅消息，订阅的`<span style="color:red">`回调留在A组件自身。
 
       ```js
       methods(){
@@ -4400,23 +4272,19 @@ router.afterEach((to, from) => {
         this.pid = pubsub.subscribe('xxx',this.demo) //订阅消息
       }
       ```
-
-   4. 提供数据：```pubsub.publish('xxx',数据)```
-
-   5. 最好在beforeDestroy钩子中，用```PubSub.unsubscribe(pid)```去<span style="color:red">取消订阅。</span>
+   4. 提供数据：``pubsub.publish('xxx',数据)``
+   5. 最好在beforeDestroy钩子中，用 ``PubSub.unsubscribe(pid)``去`<span style="color:red">`取消订阅。
 
 ### nextTick
 
-1. 语法：```this.$nextTick(回调函数)```
+1. 语法：``this.$nextTick(回调函数)``
 2. 作用：在下一次 DOM 更新结束后执行其指定的回调。
 3. 什么时候用：当改变数据后，要基于更新后的新DOM进行某些操作时，要在nextTick所指定的回调函数中执行。
 
 ### Vue封装的过度与动画
 
 1. 作用：在插入、更新或移除 DOM元素时，在合适的时候给元素添加样式类名。
-
-2. 图示：<img src="https://img04.sogoucdn.com/app/a/100520146/5990c1dff7dc7a8fb3b34b4462bd0105" style="width:60%" />
-
+2. 图示：`<img src="https://img04.sogoucdn.com/app/a/100520146/5990c1dff7dc7a8fb3b34b4462bd0105" style="width:60%" />`
 3. 写法：
 
    1. 准备好样式：
@@ -4429,22 +4297,20 @@ router.afterEach((to, from) => {
         1. v-leave：离开的起点
         2. v-leave-active：离开过程中
         3. v-leave-to：离开的终点
-
-   2. 使用```<transition>```包裹要过度的元素，并配置name属性：
+   2. 使用 ``<transition>``包裹要过度的元素，并配置name属性：
 
       ```vue
       <transition name="hello">
       	<h1 v-show="isShow">你好啊！</h1>
       </transition>
       ```
-
-   3. 备注：若有多个元素需要过度，则需要使用：```<transition-group>```，且每个元素都要指定```key```值。
+   3. 备注：若有多个元素需要过度，则需要使用：``<transition-group>``，且每个元素都要指定 ``key``值。
 
 ### vue脚手架配置代理
 
 #### 方法一
 
-​	在vue.config.js中添加如下配置：
+    在vue.config.js中添加如下配置：
 
 ```js
 devServer:{
@@ -4460,7 +4326,7 @@ devServer:{
 
 #### 方法二
 
-​	编写vue.config.js配置具体代理规则：
+    编写vue.config.js配置具体代理规则：
 
 ```js
 module.exports = {
@@ -4493,10 +4359,8 @@ module.exports = {
 
 ### 插槽
 
-1. 作用：让父组件可以向子组件指定位置插入html结构，也是一种组件间通信的方式，适用于 <strong style="color:red">父组件 ===> 子组件</strong> 。
-
+1. 作用：让父组件可以向子组件指定位置插入html结构，也是一种组件间通信的方式，适用于 `<strong style="color:red">`父组件 ===> 子组件`</strong>` 。
 2. 分类：默认插槽、具名插槽、作用域插槽
-
 3. 使用方式：
 
    1. 默认插槽：
@@ -4514,7 +4378,6 @@ module.exports = {
                   </div>
               </template>
       ```
-
    2. 具名插槽：
 
       ```vue
@@ -4537,11 +4400,9 @@ module.exports = {
                   </div>
               </template>
       ```
-
    3. 作用域插槽：
 
-      1. 理解：<span style="color:red">数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定。</span>（games数据在Category组件中，但使用数据所遍历出来的结构由App组件决定）
-
+      1. 理解：`<span style="color:red">`数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定。（games数据在Category组件中，但使用数据所遍历出来的结构由App组件决定）
       2. 具体编码：
 
          ```vue
@@ -4567,7 +4428,7 @@ module.exports = {
                          <slot :games="games"></slot>
                      </div>
                  </template>
-         		
+         
                  <script>
                      export default {
                          name:'Category',
@@ -4590,15 +4451,15 @@ module.exports = {
 
 #### 1.概念
 
-​		在Vue中实现集中式状态（数据）管理的一个Vue插件，对vue应用中多个组件的共享状态进行集中式的管理（读/写），也是一种组件间通信的方式，且适用于任意组件间通信。
+    在Vue中实现集中式状态（数据）管理的一个Vue插件，对vue应用中多个组件的共享状态进行集中式的管理（读/写），也是一种组件间通信的方式，且适用于任意组件间通信。
 
 #### 2.何时使用？
 
-​		多个组件需要共享数据时
+    多个组件需要共享数据时
 
 #### 3.搭建vuex环境
 
-1. 创建文件：```src/store/index.js```
+1. 创建文件：``src/store/index.js``
 
    ```js
    //引入Vue核心库
@@ -4622,8 +4483,7 @@ module.exports = {
    	state
    })
    ```
-
-2. 在```main.js```中创建vm时传入```store```配置项
+2. 在 ``main.js``中创建vm时传入 ``store``配置项
 
    ```js
    ......
@@ -4639,9 +4499,9 @@ module.exports = {
    })
    ```
 
-####    4.基本使用
+#### 4.基本使用
 
-1. 初始化数据、配置```actions```、配置```mutations```，操作文件```store.js```
+1. 初始化数据、配置 ``actions``、配置 ``mutations``，操作文件 ``store.js``
 
    ```js
    //引入Vue核心库
@@ -4679,18 +4539,16 @@ module.exports = {
    	state,
    })
    ```
+2. 组件中读取vuex中的数据：``$store.state.sum``
+3. 组件中修改vuex中的数据：``$store.dispatch('action中的方法名',数据)`` 或 ``$store.commit('mutations中的方法名',数据)``
 
-2. 组件中读取vuex中的数据：```$store.state.sum```
-
-3. 组件中修改vuex中的数据：```$store.dispatch('action中的方法名',数据)``` 或 ```$store.commit('mutations中的方法名',数据)```
-
-   >  备注：若没有网络请求或其他业务逻辑，组件中也可以越过actions，即不写```dispatch```，直接编写```commit```
+   > 备注：若没有网络请求或其他业务逻辑，组件中也可以越过actions，即不写 ``dispatch``，直接编写 ``commit``
+   >
 
 #### 5.getters的使用
 
 1. 概念：当state中的数据需要经过加工后再使用时，可以使用getters加工。
-
-2. 在```store.js```中追加```getters```配置
+2. 在 ``store.js``中追加 ``getters``配置
 
    ```js
    ......
@@ -4707,24 +4565,22 @@ module.exports = {
    	getters
    })
    ```
-
-3. 组件中读取数据：```$store.getters.bigSum```
+3. 组件中读取数据：``$store.getters.bigSum``
 
 #### 6.四个map方法的使用
 
-1. <strong>mapState方法：</strong>用于帮助我们映射```state```中的数据为计算属性
+1. `<strong>`mapState方法：`</strong>`用于帮助我们映射 ``state``中的数据为计算属性
 
    ```js
    computed: {
        //借助mapState生成计算属性：sum、school、subject（对象写法）
         ...mapState({sum:'sum',school:'school',subject:'subject'}),
-            
+   
        //借助mapState生成计算属性：sum、school、subject（数组写法）
        ...mapState(['sum','school','subject']),
    },
    ```
-
-2. <strong>mapGetters方法：</strong>用于帮助我们映射```getters```中的数据为计算属性
+2. `<strong>`mapGetters方法：`</strong>`用于帮助我们映射 ``getters``中的数据为计算属性
 
    ```js
    computed: {
@@ -4735,8 +4591,7 @@ module.exports = {
        ...mapGetters(['bigSum'])
    },
    ```
-
-3. <strong>mapActions方法：</strong>用于帮助我们生成与```actions```对话的方法，即：包含```$store.dispatch(xxx)```的函数
+3. `<strong>`mapActions方法：`</strong>`用于帮助我们生成与 ``actions``对话的方法，即：包含 ``$store.dispatch(xxx)``的函数
 
    ```js
    methods:{
@@ -4747,14 +4602,13 @@ module.exports = {
        ...mapActions(['jiaOdd','jiaWait'])
    }
    ```
-
-4. <strong>mapMutations方法：</strong>用于帮助我们生成与```mutations```对话的方法，即：包含```$store.commit(xxx)```的函数
+4. `<strong>`mapMutations方法：`</strong>`用于帮助我们生成与 ``mutations``对话的方法，即：包含 ``$store.commit(xxx)``的函数
 
    ```js
    methods:{
        //靠mapActions生成：increment、decrement（对象形式）
        ...mapMutations({increment:'JIA',decrement:'JIAN'}),
-       
+   
        //靠mapMutations生成：JIA、JIAN（对象形式）
        ...mapMutations(['JIA','JIAN']),
    }
@@ -4765,8 +4619,7 @@ module.exports = {
 #### 7.模块化+命名空间
 
 1. 目的：让代码更好维护，让多种数据分类更加明确。
-
-2. 修改```store.js```
+2. 修改 ``store.js``
 
    ```javascript
    const countAbout = {
@@ -4795,7 +4648,6 @@ module.exports = {
      }
    })
    ```
-
 3. 开启命名空间后，组件中读取state数据：
 
    ```js
@@ -4804,7 +4656,6 @@ module.exports = {
    //方式二：借助mapState读取：
    ...mapState('countAbout',['sum','school','subject']),
    ```
-
 4. 开启命名空间后，组件中读取getters数据：
 
    ```js
@@ -4813,7 +4664,6 @@ module.exports = {
    //方式二：借助mapGetters读取：
    ...mapGetters('countAbout',['bigSum'])
    ```
-
 5. 开启命名空间后，组件中调用dispatch
 
    ```js
@@ -4822,7 +4672,6 @@ module.exports = {
    //方式二：借助mapActions：
    ...mapActions('countAbout',{incrementOdd:'jiaOdd',incrementWait:'jiaWait'})
    ```
-
 6. 开启命名空间后，组件中调用commit
 
    ```js
@@ -4832,17 +4681,15 @@ module.exports = {
    ...mapMutations('countAbout',{increment:'JIA',decrement:'JIAN'}),
    ```
 
- ### 路由
+### 路由
 
 1. 理解： 一个路由（route）就是一组映射关系（key - value），多个路由需要路由器（router）进行管理。
 2. 前端路由：key是路径，value是组件。
 
 #### 1.基本使用
 
-1. 安装vue-router，命令：```npm i vue-router```
-
-2. 应用插件：```Vue.use(VueRouter)```
-
+1. 安装vue-router，命令：``npm i vue-router``
+2. 应用插件：``Vue.use(VueRouter)``
 3. 编写router配置项:
 
    ```js
@@ -4869,13 +4716,11 @@ module.exports = {
    //暴露router
    export default router
    ```
-
 4. 实现切换（active-class可配置高亮样式）
 
    ```vue
    <router-link active-class="active" to="/about">About</router-link>
    ```
-
 5. 指定展示位置
 
    ```vue
@@ -4884,10 +4729,10 @@ module.exports = {
 
 #### 2.几个注意点
 
-1. 路由组件通常存放在```pages```文件夹，一般组件通常存放在```components```文件夹。
+1. 路由组件通常存放在 ``pages``文件夹，一般组件通常存放在 ``components``文件夹。
 2. 通过切换，“隐藏”了的路由组件，默认是被销毁掉的，需要的时候再去挂载。
-3. 每个组件都有自己的```$route```属性，里面存储着自己的路由信息。
-4. 整个应用只有一个router，可以通过组件的```$router```属性获取到。
+3. 每个组件都有自己的 ``$route``属性，里面存储着自己的路由信息。
+4. 整个应用只有一个router，可以通过组件的 ``$router``属性获取到。
 
 #### 3.多级路由（多级路由）
 
@@ -4915,7 +4760,6 @@ module.exports = {
    	}
    ]
    ```
-
 2. 跳转（要写完整路径）：
 
    ```vue
@@ -4929,7 +4773,7 @@ module.exports = {
    ```vue
    <!-- 跳转并携带query参数，to的字符串写法 -->
    <router-link :to="/home/message/detail?id=666&title=你好">跳转</router-link>
-   				
+   
    <!-- 跳转并携带query参数，to的对象写法 -->
    <router-link 
    	:to="{
@@ -4941,7 +4785,6 @@ module.exports = {
    	}"
    >跳转</router-link>
    ```
-
 2. 接收参数：
 
    ```js
@@ -4952,7 +4795,6 @@ module.exports = {
 #### 5.命名路由
 
 1. 作用：可以简化路由的跳转。
-
 2. 如何使用
 
    1. 给路由命名：
@@ -4976,7 +4818,6 @@ module.exports = {
       	]
       }
       ```
-
    2. 简化跳转：
 
       ```vue
@@ -5024,13 +4865,12 @@ module.exports = {
    	]
    }
    ```
-
 2. 传递参数
 
    ```vue
    <!-- 跳转并携带params参数，to的字符串写法 -->
    <router-link :to="/home/message/detail/666/你好">跳转</router-link>
-   				
+   
    <!-- 跳转并携带params参数，to的对象写法 -->
    <router-link 
    	:to="{
@@ -5044,7 +4884,7 @@ module.exports = {
    ```
 
    > 特别注意：路由携带params参数时，若使用to的对象写法，则不能使用path配置项，必须使用name配置！
-
+   >
 3. 接收参数：
 
    ```js
@@ -5054,7 +4894,7 @@ module.exports = {
 
 #### 7.路由的props配置
 
-​	作用：让路由组件更方便的收到参数
+    作用：让路由组件更方便的收到参数
 
 ```js
 {
@@ -5067,7 +4907,7 @@ module.exports = {
 
 	//第二种写法：props值为布尔值，布尔值为true，则把路由收到的所有params参数通过props传给Detail组件
 	// props:true
-	
+
 	//第三种写法：props值为函数，该函数返回的对象中每一组key-value都会通过props传给Detail组件
 	props(route){
 		return {
@@ -5078,16 +4918,15 @@ module.exports = {
 }
 ```
 
-#### 8.```<router-link>```的replace属性
+#### 8.``<router-link>``的replace属性
 
 1. 作用：控制路由跳转时操作浏览器历史记录的模式
-2. 浏览器的历史记录有两种写入方式：分别为```push```和```replace```，```push```是追加历史记录，```replace```是替换当前记录。路由跳转时候默认为```push```
-3. 如何开启```replace```模式：```<router-link replace .......>News</router-link>```
+2. 浏览器的历史记录有两种写入方式：分别为 ``push``和 ``replace``，``push``是追加历史记录，``replace``是替换当前记录。路由跳转时候默认为 ``push``
+3. 如何开启 ``replace``模式：``<router-link replace .......>News</router-link>``
 
 #### 9.编程式路由导航
 
-1. 作用：不借助```<router-link> ```实现路由跳转，让路由跳转更加灵活
-
+1. 作用：不借助 ``<router-link> ``实现路由跳转，让路由跳转更加灵活
 2. 具体编码：
 
    ```js
@@ -5115,7 +4954,6 @@ module.exports = {
 #### 10.缓存路由组件
 
 1. 作用：让不展示的路由组件保持挂载，不被销毁。
-
 2. 具体编码：
 
    ```vue
@@ -5128,15 +4966,13 @@ module.exports = {
 
 1. 作用：路由组件所独有的两个钩子，用于捕获路由组件的激活状态。
 2. 具体名字：
-   1. ```activated```路由组件被激活时触发。
-   2. ```deactivated```路由组件失活时触发。
+   1. ``activated``路由组件被激活时触发。
+   2. ``deactivated``路由组件失活时触发。
 
 #### 12.路由守卫
 
 1. 作用：对路由进行权限控制
-
 2. 分类：全局守卫、独享守卫、组件内守卫
-
 3. 全局守卫:
 
    ```js
@@ -5165,7 +5001,6 @@ module.exports = {
    	}
    })
    ```
-
 4. 独享守卫:
 
    ```js
@@ -5183,7 +5018,6 @@ module.exports = {
    	}
    }
    ```
-
 5. 组件内守卫：
 
    ```js
@@ -5213,22 +5047,6 @@ module.exports = {
       3. 应用部署上线时需要后端人员支持，解决刷新页面服务端404的问题。
    ```
 
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # 三. React
 
 **react官方** : https://react.docschina.org/
@@ -5246,7 +5064,6 @@ module.exports = {
 ### 1. 虚拟Dom和真实DOM
 
 1. 虚拟dom本质是Object类型的对象(一般对象)
-
 2. 虚拟dom比较轻，真实dom比较重，因为虚拟dom是react内部使用，无需真实dom上那么多属性
 3. 虚拟dom最终会被react转化为真实dom，呈现在页面上
 
@@ -5298,7 +5115,7 @@ b. 真实dom
     console.dir(document.getElementById("div"));
 
 </script>
-    
+  
 ```
 
 ### 2. jsx的规则
@@ -5509,11 +5326,8 @@ b. 真实dom
 ### 6. state
 
 1. state是组件对象最重要的属性,值是对象(可以包含多个key value的组合)
-
-2. 组件被称为"状态机",通过更新组件的state来更新对应的页面的显示(或者更新渲染组件) 
-
+2. 组件被称为"状态机",通过更新组件的state来更新对应的页面的显示(或者更新渲染组件)
 3. 组件中render方法中的this为组件实例对象
-
 4. 组件自定义方法中的this为undefined
 
    a. 强制绑定this，通过函数对象的bind()
@@ -5521,7 +5335,6 @@ b. 真实dom
    b. 箭头函数
 
    **两者区别: bind()只绑定一次 箭头函数会重复创建**
-
 5. 状态数据,不能直接修改或者更新
 
 ```react
@@ -5583,7 +5396,7 @@ b. 真实dom
 
         changeWeather2() {
             console.log(" changeWeather2", this);    // this是weather实例对象
-           
+         
         }
 
         render() {
@@ -5632,9 +5445,7 @@ b. 真实dom
 
 1. 每个组件都有props属性(properties的简写)属性
 2. 组件标签的所有属性都包含在props中
-
 3. props是从外部带进去的
-
 4. props是只读的，不要修改props的值
 
 **1. code案列**
@@ -5664,7 +5475,7 @@ b. 真实dom
 
     // props是从外部带进去的
     class Person extends React.Component {
-        
+      
         constructor(){
             super()
             console.info(props);  // undefend  // 如果要接收到props在初始化的时候判断 则得接受
@@ -5687,7 +5498,7 @@ b. 真实dom
         age: PropTypes.number,  // 限制age为数字
         speak: PropTypes.func,  // 限制speak为函数
     }
-    
+  
     Person.defaultProps = {
         sex: "nan", // 默认值
         age: 18
@@ -5710,7 +5521,7 @@ b. 真实dom
 ```react
 	// 2. 简写方式
     class Person extends React.Component {
-        
+      
         static propTypes = {
             name: PropTypes.string.isRequired,  //限制name必传,且为字符串
             sex: PropTypes.string,
@@ -5819,9 +5630,9 @@ b. 真实dom
             return (
                 <div>
                     // 内联方式 
-                    <input ref={c => { this.input1 = console.log("@", c) }} type="text" placeholder="请输入人文字" />&nbsp;
+                    <input ref={c => { this.input1 = console.log("@", c) }} type="text" placeholder="请输入人文字" /> 
                     <button onClick={this.showData}>点击我弹出文字</button>
-                    &nbsp;
+                     
                     {/* 以下ref方式直接调用方式*/}
                     <input onBlur={this.showData2} ref={this.saveInput} type="text" placeholder="失去焦点弹出" />
                     <h2>今天天气很{isHot ? '炎热' : '凉爽'}</h2>
@@ -5856,9 +5667,9 @@ b. 真实dom
         render() {
             return (
                 <div>
-                    <input ref={this.myRef} type="text" placeholder="请输入人文字" />&nbsp;
+                    <input ref={this.myRef} type="text" placeholder="请输入人文字" /> 
                     <button onClick={this.showData}>点击我弹出文字</button>
-                    &nbsp;
+                     
                     <input onBlur={this.showData2} ref={this.myRef2} type="text" placeholder="失去焦点弹出" />
 
                 </div>
@@ -5869,28 +5680,18 @@ b. 真实dom
     ReactDOM.render(<Demo />, document.getElementById("div"));
 ```
 
-
-
-
-
 ### 9. 事件处理
-
-
 
 1. 通过onXxx属性指定事件处理函数(注意大小写)
 
-  		a. React使用的是自定义(合成)事件,而不是使用原生DOM事件  ————为了更好的兼容性
-  	
-  	   b. React中的事件是通过事件委托方式处理的(委托给最外层的元素) ————为了高效
+   a. React使用的是自定义(合成)事件,而不是使用原生DOM事件  ————为了更好的兼容性
 
+   b. React中的事件是通过事件委托方式处理的(委托给最外层的元素) ————为了高效
 2. 通过event.target得到发生事件的DOM元素对象            ————不要过度使用ref
-
-
 
 ### 10. 受控/非受控组件
 
-1. 受控组件: 页面上所有输入类的DOM  随着用户的输入把数据维护状态中去 等用的时候直接从状态中取 
-
+1. 受控组件: 页面上所有输入类的DOM  随着用户的输入把数据维护状态中去 等用的时候直接从状态中取
 2. 非受控组件: 页面上所有输入类的DOM 现用现取， 非受控组件上有时候不可避免的使用ref 但是ref不推荐过多使
 
 **1. 非受控组件**
@@ -5960,7 +5761,7 @@ b. 真实dom
 2. **函数柯里化: 通过函数调用继续返回函数的方式 ，实现多次接收参数最后统一处理的编码方式**
 
 ```react
-	
+
     class Login extends React.Component {
 
         state = { username: "", password: "" }
@@ -5997,17 +5798,17 @@ b. 真实dom
 
 
     	// 2. 不用柯里化的方式
-    
+  
         // saveFromData = (dataType, event) => {
         //     this.setState({ [dataType]: event.target.value })
         // }
 
         // 简写: 
         saveFromData = (dataType, event) => this.setState({ [dataType]: event.target.value })
-       
+     
         <input onChange={event => this.saveFromData('username', event)} type="text" name="username" />
         <input onChange={event => this.saveFromData('password', event)} type="password" name="password" />
-    
+  
 
 
     	ReactDOM.render(<Login />, document.getElementById("div"))
@@ -6018,33 +5819,30 @@ b. 真实dom
 
 **1. 初始化阶段: 由ReactDom.render()触发一次渲染**
 
-​      	**1.constructor()**
-
-​      	**2.componentWillMount()**
-
-​      	**3.render()**
-
-​      	**4.componentDidMount() ==> 常用 一般在这个钩子做一些初始化的事情，开启定时器，发送网络请求，订阅消息**
+    **1.constructor()**
+    
+    **2.componentWillMount()**
+    
+    **3.render()**
+    
+    **4.componentDidMount() ==> 常用 一般在这个钩子做一些初始化的事情，开启定时器，发送网络请求，订阅消息**
 
   **2. 更新阶段 由组件内部this.setState()或父组件render触发**
 
-​     	 **1.shouldComponentUpdate()**
-
-​      	**2.componentWillUpdate()**
-
-​      	**3.render() ===> 必须使用的一个**
-
-​      	**4.componentDidUpdate()**
+    **1.shouldComponentUpdate()**
+    
+    **2.componentWillUpdate()**
+    
+    **3.render() ===> 必须使用的一个**
+    
+    **4.componentDidUpdate()**
 
   **3. 卸载组件: 由ReactDOM.unmountComponentAtNode() 触发**
 
-​      	**1.componentWillUnmount()  一般做一些收尾的事。例如 关闭定时器,取消订阅**
+    **1.componentWillUnmount()  一般做一些收尾的事。例如 关闭定时器,取消订阅**
 
-​       							
 
 **1. 旧的**
-
- 
 
 ![image-20220416170548259](typora-user-images\image-20220416170548259.png)
 
@@ -6141,7 +5939,7 @@ b. 真实dom
     }
 
 
-    
+  
     class Zi extends React.Component {
         constructor(props) {
             super(props)
@@ -6230,7 +6028,7 @@ b. 真实dom
 
 2. 父组件点击点我加1 更新状态
 	Fu---shouldComponentUpdate		阀门
-    Fu---componentWillUpdate		
+    Fu---componentWillUpdate	
     Fu---render
    	Zi---componentWillReceiveProps {count: 2}
     Zi---shouldComponentUpdate
@@ -6241,7 +6039,7 @@ b. 真实dom
 
 3. 父组件点击 强制更新没有更改状态
 	继上个输出只是少了个shouldComponentUpdate  因为force 在componentWillUpdate阶段 看图
-    
+  
 4. 子组件点击 点我加1 更新状态 (并不影响父组件)
     Zi---shouldComponentUpdate
     Zi---componentWillUpdate
@@ -6251,15 +6049,11 @@ b. 真实dom
 
 ```
 
-
-
 **2. 新的钩子**
 
 旧的废弃了3个will 新的增加了2个
 
 ![image-20220416205434734](typora-user-images\image-20220416205434734.png)
-
-
 
 ### 13. Diff算法
 
@@ -6316,7 +6110,7 @@ let person = [
 
 **如果使用index引发的问题**
 
-![image-20220417161337912](typora-user-images\image-20220417161337912.png) 
+![image-20220417161337912](typora-user-images\image-20220417161337912.png)
 
 ![image-20220417153059921](typora-user-images\image-20220417153059921.png)
 
@@ -6352,46 +6146,44 @@ e.创建项目并启动
 
 1. 单页应用(single page web application, SPA)。
 2. 整个页面只有一个**完整的页面**
-
 3. 点解页面中的链接**不会刷新**页面，只会做页面的**局部更新**
-
 4. 数据都要通过axios获取, 并在前端异步展现
 
 **2. 路由的理解**
 
-​	**1. 什么是路由?**
-
-​		a. 一个路由就是一个映射关系(key：value)
-
-​		b.key为路径,value可能是function或者 component 
-
-​	**2. 路由的分类**
-
-​		a. 后端路由:
-
-​			Ⅰ. 理解: value是function，用来处理客户端的请求
-
-​			Ⅱ. 注册路由: router.get(path,function(req,res))
-
-​			Ⅲ. 工作过程：当node接收到一个请求时,根据请求路径找到匹配的路由,调用路由中的函数来处理请求,返回响应数据
-
-​		b. 前端路由:
-
-​			Ⅰ. 浏览器端路由, value是componet，用于展现页面内容
-
-​			Ⅱ. 注册路由: <Route path="/test" component={Test}>
-
-​			Ⅲ.工作过程: 当浏览器的path变为/test时,当前路由组件就会变成Test组件
-
-​	**3. react-router 的理解**
-
-​		a. react的一个插件库
-
-​		b. 专门用来实现一个 spa应用
-
-​		c. 基于react的项目基本都会用到此库
-
-​	**4. react-router-dom相关Api**
+    **1. 什么是路由?**
+    
+    a. 一个路由就是一个映射关系(key：value)
+    
+    b.key为路径,value可能是function或者 component
+    
+    **2. 路由的分类**
+    
+    a. 后端路由:
+    
+    Ⅰ. 理解: value是function，用来处理客户端的请求
+    
+    Ⅱ. 注册路由: router.get(path,function(req,res))
+    
+    Ⅲ. 工作过程：当node接收到一个请求时,根据请求路径找到匹配的路由,调用路由中的函数来处理请求,返回响应数据
+    
+    b. 前端路由:
+    
+    Ⅰ. 浏览器端路由, value是componet，用于展现页面内容
+    
+    Ⅱ. 注册路由:`<Route path="/test" component={Test}>`
+    
+    Ⅲ.工作过程: 当浏览器的path变为/test时,当前路由组件就会变成Test组件
+    
+    **3. react-router 的理解**
+    
+    a. react的一个插件库
+    
+    b. 专门用来实现一个 spa应用
+    
+    c. 基于react的项目基本都会用到此库
+    
+    **4. react-router-dom相关Api**
 
 ```react
 	1. <BrowerRouter>
@@ -6404,7 +6196,7 @@ e.创建项目并启动
     8.
 ```
 
-​	**5. 其他**
+    **5. 其他**
 
 ```
  	1. history对象
@@ -6412,7 +6204,7 @@ e.创建项目并启动
  	3. withRouter函数
 ```
 
-**6. 用法  6.0之后** 
+**6. 用法  6.0之后**
 
 ```react
  	导航区:   <Link to="/about">About</Link>
@@ -6426,62 +6218,50 @@ e.创建项目并启动
              </Routes>
  
 	路由器:  <BrowserRouter> 
-        		<App/>	
+        		<App/>
         	<BrowserRouter/>
  
- 	
+ 
 ```
 
 **7. 组件分类**
 
 一般组件:  直接引入的就是一般组件 一般放在components文件夹
-	
+
 路由组件:  靠路由渲染的组件 称为路由组件 一般放在pages文件夹
-
-
-
-
-
-
 
 ### 3. React Router 6快速上手
 
 1. React Router 以三个不同的包发布到npm上，他们分别为:
    1. react-router: 路由的核心库,提供了很多的 组件， 钩子
-   2. <span style="color:red">**react-router-dom: 包含了react-router所有内容,并添加了一些专门用于DOM的组件，例如<BrowserRouter>等**</span>
-   3. react-router-native: 包括了react-router所有内容,并添加了一些专门用于ReactNative的API,例如<NativeRouter>等
+   2. `<span style="color:red">`**react-router-dom: 包含了react-router所有内容,并添加了一些专门用于DOM的组件，例如`<BrowserRouter>`等**
+   3. react-router-native: 包括了react-router所有内容,并添加了一些专门用于ReactNative的API,例如`<NativeRouter>`等
 2. 与React router 5.x版本相比,改变了什么
-   1. 内置组件的变化：移除了<Switch/> 新增<Routes/>等.
-   2. 语法的变化,component={About} 改为 element={<About/>}等
+   1. 内置组件的变化：移除了`<Switch/>` 新增`<Routes/>`等.
+   2. 语法的变化,component={About} 改为 element={`<About/>`}等
    3. 新增了多个hook: useParams、useNavigate、useMatch等
-   4. <span style="color:red">**官方明确推荐使用函数式组件了**</span>
-
-
+   4. `<span style="color:red">`**官方明确推荐使用函数式组件了**
 
 #### 1. `<BrowerRouter>`
 
 1. 说明:BrowerRoute用于包裹整个应用
-
 2. 示例代码:
 
    ```react
    import React from 'react';
    import ReactDOM from 'react-dom/client';
    import { BrowserRouter } from 'react-router-dom'
-   
-   
-   
+
+
+
    const root = ReactDOM.createRoot(document.getElementById('root'));
    root.render(
        <BrowserRouter>
            { /*整体结构,通常为App组件*/}
        </BrowserRouter>
-   
+
    );
    ```
-
-
-
 
 #### 2. `<HashRouter>`
 
@@ -6489,19 +6269,14 @@ e.创建项目并启动
 
 2.备注:6.x版本中hashRouter、BrowserRouter用法一致
 
-
-
 #### 3. `<Routes/> 与 <Route/>`
 
-1. v6版本中移除了先前的<Switch/>引入了新的替代者:<Routes/>
-
-2. <Routes>和<Route>要配合使用,且必须要用<Routes>包裹<Route>
-
-3. <Route>相对于一个if语句,如果路径与当前URL匹配,则呈现其对应的组件。
-
-4. <Route caseSensitive>属性用于指定: 匹配时是否区分大小写(默认为false)。
-5. 当URL发生变化时,<Routes>都会查看其所有子<Route>元素以找到最佳匹配并呈现组件.
-6. <Route>也可以嵌套使用.且配合`useRoute()`配置 ”路由表“ ,但需要通过<Outlet>组件来渲染其子路由
+1. v6版本中移除了先前的`<Switch/>`引入了新的替代者:`<Routes/>`
+2. `<Routes>`和`<Route>`要配合使用,且必须要用`<Routes>`包裹`<Route>`
+3. `<Route>`相对于一个if语句,如果路径与当前URL匹配,则呈现其对应的组件。
+4. `<Route caseSensitive>`属性用于指定: 匹配时是否区分大小写(默认为false)。
+5. 当URL发生变化时,`<Routes>`都会查看其所有子`<Route>`元素以找到最佳匹配并呈现组件.
+6. `<Route>`也可以嵌套使用.且配合 `useRoute()`配置 ”路由表“ ,但需要通过`<Outlet>`组件来渲染其子路由
 
 #### 4. `<Link>`
 
@@ -6510,9 +6285,7 @@ e.创建项目并启动
 <Link to="/home">  Home  </NavLink>
  
  
-```
-
-
+   ```
 
 #### 5. `<NavLink>`
 
@@ -6526,7 +6299,7 @@ about为定义了一个函数的写法
 
 
 export default function App() {
-    
+  
   const computedClassName = ({ isActive }) => {
     return isActive ? "colorRed" : "";
   };
@@ -6552,20 +6325,16 @@ export default function App() {
           </ul>
 ```
 
-
-
-#### 6. `<Navigate>` 
+#### 6. `<Navigate>`
 
 **重定向：**
 
-1. 作用: 只要<Navigate>组件被渲染,就会修改路径,切换视图.
-
+1. 作用: 只要`<Navigate>`组件被渲染,就会修改路径,切换视图.
 2. `replace`属性用于控制跳转的模式 (push 或 replace, 默认是push)。
-
 3. 示例代码:
 
    ```react
-    
+   
    第一种:
    <Routes>
        <Route path="/home" element={<Home a={"123"} />} />
@@ -6598,7 +6367,7 @@ export default function App() {
 
 ```react
 Home组件:
-<NavLink to="news">News</NavLink>&nbsp;&nbsp;
+<NavLink to="news">News</NavLink>  
 <NavLink to="Message">Message</NavLink><br /><br />
 
 <div style={{height:100,backgroundColor:"yellow"}}>
@@ -6606,8 +6375,6 @@ Home组件:
  <Outlet/>		// 有多级路由 就在这个位置展示
 </div>
 ```
-
-
 
 #### 3. Hooks
 
@@ -6676,7 +6443,7 @@ export default function App() {
 
 
 Home组件:
-<NavLink to="news">News</NavLink>&nbsp;&nbsp;
+<NavLink to="news">News</NavLink>  
 <NavLink to="Message">Message</NavLink><br /><br />
 
 <div style={{height:100,backgroundColor:"yellow"}}>
@@ -6685,8 +6452,6 @@ Home组件:
 </div>
 
 ```
-
-
 
 ##### 2. useNavigate()
 
@@ -6748,14 +6513,12 @@ export default function Message() {
 
 ```
 
-
-
 ##### 3. useParams()
 
 **路由接收params参数**
 
 ```react
-路由列表	
+路由列表
 {
   path: 'message',
   element: <Message />,
@@ -6819,8 +6582,6 @@ export default function Detail() {
 
 ```
 
-
-
 ##### 4.useSearchParams()
 
 **接收参数的方式 search**
@@ -6837,11 +6598,11 @@ export default function Detail() {
         },
       ],
     },
-     
+   
 传参形式
  <Link to={`detail/?id=${v.id}&title=${v.title}&context=${v.context}}> {v.title}   
   </Link>
-    
+  
 接收参数  
 
 import React from 'react'
@@ -6867,11 +6628,9 @@ export default function Detail() {
 
 }
 
-     
+   
 
 ```
-
-
 
 ##### 5.useLocation()
 
@@ -6890,9 +6649,9 @@ export default function Detail() {
         },
       ],
     },
-     
+   
   
-        
+      
 传参形式
  <li key={v.id}>
       <Link
@@ -6907,7 +6666,7 @@ export default function Detail() {
       </Link>
     </li>
 
-    
+  
 接收参数  
 
 import React from 'react'
@@ -6931,61 +6690,48 @@ export default function Detail() {
 }
 ```
 
-
-
 ##### 6. useMatch()
-
-
 
 ### 4. Redux
 
 #### 1. Redux是什么
 
-1. redux是一个专门用于做<span style="color:red">**状态管理**</span>的js库(不是react插件库)
-
+1. redux是一个专门用于做`<span style="color:red">`**状态管理**的js库(不是react插件库)
 2. 它可以用在React Vue Angular等多个项目中, 但是基本与React配合
-3. 作用: 集中式管理 react应用中多个组件<span style="color:red"> **共享** </span>的状态
+3. 作用: 集中式管理 react应用中多个组件`<span style="color:red">` **共享** 的状态
 
 #### 2 .什么情况下需要使用Redux
 
 1. 某个组件的状态，需要让其他组件可以随时拿到 (共享)
-
 2. 一个组件需要改变另一个组件的状态 (通信)
-
 3. 总体原则: 能不用就不用,如果不用感觉到 **吃力** 才考虑使用
 
 #### 3. redux 工作流程
 
 ![image-20220420175914349](typora-user-images\image-20220420175914349.png)
 
-
-
 #### 4. Redux三个核心概念
 
 **1. action**
 
-1.  动作的对象
+1. 动作的对象
 2. 包含2个属性
    * type : 标识属性，值为字符串 ,唯一必要属性
    * data: 数据类型, 值类型任意,可选属性
 3. 例子: {type:'ADD_STUDENT',data:{name:'Tom',age:18}}
 
-
-
 **2. reducer**
 
 1. 用于初始化状态 和 加工状态
-2. 加工时,根究旧的state和action ，产生新的state的 <span style="color:red"> **纯函数** </span>
-
-
+2. 加工时,根究旧的state和action ，产生新的state的 `<span style="color:red">` **纯函数** 
 
 **3. store**
 
 1. 将state、action、reducer联系在一起的对象
 2. 如何得到此对象
-   1.  import {createStore} from 'redux'
+   1. import {createStore} from 'redux'
    2. import reducer from './reducers'
-   3. const store =createStore(reducer)   
+   3. const store =createStore(reducer)
 3. 此对象的功能
    1. getState() : 得到state
    2. dispatch(action) : 分发action,触发 reducer调用,产生新的state
@@ -6996,7 +6742,6 @@ export default function Detail() {
 1. reducer
 
    combineReducers() 合并reducer
-
 2. store
 
    createStore 创建一个store对象
@@ -7004,14 +6749,9 @@ export default function Detail() {
    dispatch(aciton) 分发一个action
 
    subscribe() 检测更改了状态得state
-
 3. action
 
-​	middleaware 中间件
-
- 
-
-
+    middleaware 中间件
 
 #### 6. 求和案例
 
@@ -7067,19 +6807,19 @@ export default class Count extends React.Component {
           <option value="2">2</option>
           <option value="3">3</option>
         </select>
-        &nbsp;
+         
         <button onClick={this.operation("increment")} style={{ width: 100 }}>
           +
         </button>
-        &nbsp;
+         
         <button onClick={this.operation("decrement")} style={{ width: 100 }}>
           -
         </button>
-        &nbsp;
+         
         <button onClick={this.operation("addIncrement")}>
           当前求和为奇数再加
         </button>
-        &nbsp;
+         
         <button onClick={this.asycIncrement}>异步加</button>
       </div>
     );
@@ -7092,39 +6832,37 @@ export default class Count extends React.Component {
 
 1. 要引入redux包 npm i redux -S
 
-​	**总结:**
+    **总结:**
 
-​	a. 去除Count组件自身的状态
+    a. 去除Count组件自身的状态
 
-​	b.  src文件夹下建立:
+    b.  src文件夹下建立:
 
-​					--rdeux
+    --rdeux
 
-​							--store.js
+    --store.js
 
-​							--count_Reducer.js
+    --count_Reducer.js
 
-​	c.  store.js
+    c.  store.js
 
-​				1>> 引入redux中的createStore函数,创建一个store
+    1>> 引入redux中的createStore函数,创建一个store
 
-​				2>> .createStore调用时候要传入一个为其服务的reducer
+    2>> .createStore调用时候要传入一个为其服务的reducer
 
-​				3>> 记得暴露store对象
+    3>> 记得暴露store对象
 
-​	d. count_Reducer.js
+    d. count_Reducer.js
 
-​				1.Reducer本质是一个纯函数,接收. preState,action 返回加工后的状态
+    1.Reducer本质是一个纯函数,接收. preState,action 返回加工后的状态
 
-​				2.reducer有两个作用: 初始化状态,加工状态
+    2.reducer有两个作用: 初始化状态,加工状态
 
-​				3.reducer被第一调用时候,是store自动触发的,传递的preState是undefined	
+    3.reducer被第一调用时候,是store自动触发的,传递的preState是undefined
 
-​	e.  在index.js 中检测store中状态的改变,一旦发生改变重新渲染<App/>
+    e.  在index.js 中检测store中状态的改变,一旦发生改变重新渲染`<App/>`
 
-​			备注: redux只负责管理状态,至于状态的改变驱动着页面的显示,要靠我们自己写
-
-
+    备注: redux只负责管理状态,至于状态的改变驱动着页面的显示,要靠我们自己写
 
 ```react
 1. store.js
@@ -7217,8 +6955,8 @@ export default class Count extends React.Component {
 
 新增了两个文件:
 
-	1. count_Action.js 专门用于创建action对象
-	1. constant.js 放置编码忽略写错action中的 type
+    1. count_Action.js 专门用于创建action对象
+    1. constant.js 放置编码忽略写错action中的 type
 
 ```react
 1. count_Action.js
@@ -7356,30 +7094,25 @@ import {
 ![image-20220421111218835](typora-user-images\image-20220421111218835.png)
 
 1. 引入react-redux 依赖包 npm i react-redux --save
-
 2. 明确两个概念:
 
    1. UI组件: 不能使用任何redux的api,只负责页面的呈现 交互
    2. 容器组件: 负责和redux通信，将结果交给Ui组件
-
 3. 如何创建一个容器组件 -- 靠react-redux 的connect函数
 
    ```react
    connect(mapStateToProps, mapDispatchToProps)(CountUI);
    	--mapStateToProps：映射状态,返回值是一个对象
    	--mapDispatchToProps：映射操作状态的方法: 返回值是一个对象
-   	
+   
+   ```
+4. 备注: 容器组件的store是靠props传进去的 而不是在容器组件中直接使用
+
+   ```react
+    <Count store={store} a={1} b={()=>123}/>
    ```
 
- 4. 备注: 容器组件的store是靠props传进去的 而不是在容器组件中直接使用
-
-    ```react
-     <Count store={store} a={1} b={()=>123}/>
-    ```
-
-    备注2：mapDispatchToProps 也可以是一个对象
-
-
+   备注2：mapDispatchToProps 也可以是一个对象
 
 ```react
 1. index.js
@@ -7494,7 +7227,7 @@ export default class Count extends React.Component {
   
   operation = (type) => {
     return (e) => {
-    
+  
       //  props的值在容器组件中connect(a,b)() 中传递了
       let { count, increment, decrement, asyncIncrement } = this.props; 
       let value = this.selectNumber.value * 1;
@@ -7598,10 +7331,10 @@ export default connect(
 
 1. 一类特别的函数,只要同样的输入(实参),必须得到同样的输出
 2. 必须遵循一下一些约束
+
    1. 不得改写参数数据
    2. 不会产生任何副作用,列如网络请求,输入和输出设备
    3. 不能调用Date.now()或者Math.random()等不纯的方法、
-
 3. redux的reducer必须是一个纯函数
 
 ##### 8. 最终版:项目中
@@ -7612,19 +7345,13 @@ export default connect(
 2. 打包代码 npm run build
 3. 把文件build作为根目录，启动 serve build
 
-
-
-
-
-
-
 ## 3. 高级部分
 
 ### 1. 不用高阶组件写法
 
 ```react
 
-    
+  
    
 
     class Sub extends React.Component {
@@ -7657,7 +7384,7 @@ export default connect(
             )
         }
     }
-    
+  
     class Foo extends React.Component {
         state = {
             xPos: document.documentElement.clientWidth,
@@ -7706,13 +7433,11 @@ export default connect(
 </script>
 ```
 
-
-
 ### 2. 高阶组件
 
 ```react
 
-    
+  
     // 高阶组件
     const WithSize = Component => {
         return class toSize extends React.Component {
@@ -7793,7 +7518,7 @@ export default connect(
 
 ### 3. Hooks
 
-#### 1. useRef 
+#### 1. useRef
 
 **引用是相同的**
 
@@ -7920,11 +7645,7 @@ const otherName =  useMemo(()=>changeName(name),[name]) //只有name发生了改
 
 export default Button
 这个时候我们点击 改变content值的按钮，发现changeName 并没有被调用。
-但是点击改变name值按钮的时候，changeName被调用了。我们可以`使用useMemo方法 避免无用方法的调用`，当然一般我们changName里面可能会使用useState来改变state的值，那是不是就避免了组件的二次渲染。达到了优化性能的目的
-
-
-
-
+但是点击改变name值按钮的时候，changeName被调用了。我们可以 `使用useMemo方法 避免无用方法的调用`，当然一般我们changName里面可能会使用useState来改变state的值，那是不是就避免了组件的二次渲染。达到了优化性能的目的
 
 ##### 2. 例子
 
@@ -7937,21 +7658,17 @@ export default Button
 
 在hooks出来之后，我们能够使用function的形式来创建包含内部state的组件。但是，使用function的形式，失去了上面的shouldComponentUpdate，我们无法通过判断前后状态来决定是否更新。而且，在函数组件中，react不再区分mount和update两个状态，这意味着函数组件的每一次调用都会执行其内部的所有逻辑，那么会带来较大的性能损耗。因此useMemo 和useCallback就是解决性能问题的杀手锏。
 
-
-
 **对比**
 
 我们先简单的看一下useMemo和useCallback的调用签名：
 
-> function useMemo<T>(factory: () => T, deps: DependencyList | undefined): T; 
+> function useMemo`<T>`(factory: () => T, deps: DependencyList | undefined): T;
 >
 > function useCallback<T extends (...args: any[]) => any>(callback: T, deps: DependencyList): T;
 
 useCallback和useMemo的参数跟useEffect一致，他们之间最大的区别有是useEffect会用于处理副作用，而前两个hooks不能。
 
 useMemo和useCallback都会在组件第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行；并且这两个hooks都返回缓存的值，useMemo返回缓存的变量，useCallback返回缓存的函数。
-
-
 
 我们来看一个反例：
 
@@ -7961,7 +7678,7 @@ import React from 'react';
 export default function WithoutMemo() {
     const [count, setCount] = useState(1);
     const [val, setValue] = useState('');
-    
+  
     function expensive() {
         console.log('compute');
         let sum = 0;
@@ -7970,7 +7687,7 @@ export default function WithoutMemo() {
         }
         return sum;
     }
-    
+  
     return( 
     <div>
         <h4>{count}-{val}-{expensive()}</h4>
@@ -7982,15 +7699,13 @@ export default function WithoutMemo() {
 )}
 ```
 
-
-
 这里创建了两个state，然后通过expensive函数，执行一次昂贵的计算，拿到count对应的某个值。我们可以看到：无论是修改count还是val，由于组件的重新渲染，都会触发expensive的执行(能够在控制台看到，即使修改val，也会打印)；但是这里的昂贵计算只依赖于count的值，在val修改的时候，是没有必要再次计算的。在这种情况下，我们就可以使用useMemo，只在count的值修改时，执行expensive计算：
 
 ```react
 export default function WithMemo() {
     const [count, setCount] = useState(1);
     const [val, setValue] = useState('');
-    
+  
     const expensive = useMemo(() => {
         console.log('compute');
         let sum = 0;
@@ -7999,7 +7714,7 @@ export default function WithMemo() {
         }
         return sum;
     }, [count]);
-    
+  
     return <div>
         <h4>{count}-{expensive}</h4>
         {val}
@@ -8012,10 +7727,6 @@ export default function WithMemo() {
 ```
 
 上面我们可以看到，使用useMemo来执行昂贵的计算，然后将计算值返回，并且将count作为依赖值传递进去。这样，就只会在count改变的时候触发expensive执行，在修改val的时候，返回上一次缓存的值。
-
-
-
-
 
 #### 4. useCallback
 
@@ -8080,7 +7791,7 @@ function Parent() {
 
 function Child({ callback }) {
     const [count, setCount] = useState(() => callback());
-     
+   
     useEffect(() => {
         setCount(callback());
     }, [callback]);
@@ -8094,11 +7805,7 @@ function Child({ callback }) {
 
 不仅是上面的例子，所有依赖本地状态或props来创建函数，需要使用到缓存函数的地方，都是useCallback的应用场景。
 
-
-
 useEffect、useMemo、useCallback都是自带闭包的。也就是说，每一次组件的渲染，其都会捕获当前组件函数上下文中的状态(state, props)，所以每一次这三种hooks的执行，反映的也都是当前的状态，你无法使用它们来捕获上一次的状态。对于这种情况，我们应该使用ref来访问。
-
-
 
 ## 4. 扩展部分
 
@@ -8110,7 +7817,7 @@ useEffect、useMemo、useCallback都是自带闭包的。也就是说，每一�
 	(1). setState(stateChange, [callback])------对象式的setState
             1.stateChange为状态改变对象(该对象可以体现出状态的更改)
             2.callback是可选的回调函数, 它在状态更新完毕、界面也更新后(render调用后)才被调用
-					
+				
 	(2). setState(updater, [callback])------函数式的setState
             1.updater为返回stateChange对象的函数。
             2.updater可以接收到state和props。
@@ -8124,11 +7831,7 @@ useEffect、useMemo、useCallback都是自带闭包的。也就是说，每一�
 					要在第二个callback函数中读取
 ```
 
-
-
-------
-
-
+---
 
 ### 2. lazyLoad
 
@@ -8137,7 +7840,7 @@ useEffect、useMemo、useCallback都是自带闭包的。也就是说，每一�
 ```js
 	//1.通过React的lazy函数配合import()函数动态加载路由组件 ===> 路由组件代码会被分开打包
 	const Login = lazy(()=>import('@/pages/Login'))
-	
+
 	//2.通过<Suspense>指定在加载得到路由打包文件前显示一个自定义loading界面
 	<Suspense fallback={<h1>loading.....</h1>}>
         <Switch>
@@ -8147,11 +7850,7 @@ useEffect、useMemo、useCallback都是自带闭包的。也就是说，每一�
     </Suspense>
 ```
 
-
-
-------
-
-
+---
 
 ### 3. Hooks
 
@@ -8198,7 +7897,7 @@ useEffect、useMemo、useCallback都是自带闭包的。也就是说，每一�
             // 在此做一些收尾工作, 比如清除定时器/取消订阅等
           }
         }, [stateValue]) // 如果指定的是[], 回调函数只会在第一次render()后执行
-    
+  
 (4). 可以把 useEffect Hook 看做如下三个函数的组合
         componentDidMount()
         componentDidUpdate()
@@ -8213,11 +7912,7 @@ useEffect、useMemo、useCallback都是自带闭包的。也就是说，每一�
 (3). 作用:保存标签对象,功能与React.createRef()一样
 ```
 
-
-
-------
-
-
+---
 
 ### 4. Fragment
 
@@ -8232,8 +7927,6 @@ useEffect、useMemo、useCallback都是自带闭包的。也就是说，每一�
 
 > 可以不用必须有一个真实的DOM根标签了
 
-
-
 <hr/>
 
 ### 5. Context
@@ -8247,12 +7940,12 @@ useEffect、useMemo、useCallback都是自带闭包的。也就是说，每一�
 ```js
 1) 创建Context容器对象：
 	const XxxContext = React.createContext()  
-	
+
 2) 渲染子组时，外面包裹xxxContext.Provider, 通过value属性给后代组件传递数据：
 	<xxxContext.Provider value={数据}>
 		子组件
     </xxxContext.Provider>
-    
+  
 3) 后代组件读取数据：
 
 	//第一种方式:仅适用于类组件 
@@ -8271,46 +7964,39 @@ useEffect、useMemo、useCallback都是自带闭包的。也就是说，每一�
 
 **注意**
 
-	在应用开发中一般不用context, 一般都用它的封装react插件
-
-
+    在应用开发中一般不用context, 一般都用它的封装react插件
 
 <hr/>
 
-
 ### 6. 组件优化
 
-**Component的2个问题** 
+**Component的2个问题**
 
 > 1. 只要执行setState(),即使不改变状态数据, 组件也会重新render() ==> 效率低
->
 > 2. 只当前组件重新render(), 就会自动重新render子组件，纵使子组件没有用到父组件的任何数据 ==> 效率低
 
 **效率高的做法**
 
->  只有当组件的state或props数据发生改变时才重新render()
+> 只有当组件的state或props数据发生改变时才重新render()
 
 **原因**
 
->  Component中的shouldComponentUpdate()总是返回true
+> Component中的shouldComponentUpdate()总是返回true
 
 **解决**
 
-	办法1: 
-		重写shouldComponentUpdate()方法
-		比较新旧state或props数据, 如果有变化才返回true, 如果没有返回false
-	办法2:  
-		使用PureComponent
-		PureComponent重写了shouldComponentUpdate(), 只有state或props数据有变化才返回true
-		注意: 
-			只是进行state和props数据的浅比较, 如果只是数据对象内部数据变了, 返回false  
-			不要直接修改state数据, 而是要产生新数据
-	项目中一般使用PureComponent来优化
-
-
+    办法1:
+    	重写shouldComponentUpdate()方法
+    	比较新旧state或props数据, 如果有变化才返回true, 如果没有返回false
+    办法2:
+    使用PureComponent
+    	PureComponent重写了shouldComponentUpdate(), 只有state或props数据有变化才返回true
+    	注意:
+    		只是进行state和props数据的浅比较, 如果只是数据对象内部数据变了, 返回false
+    不要直接修改state数据, 而是要产生新数据
+    项目中一般使用PureComponent来优化
 
 <hr/>
-
 
 ### 7. render props
 
@@ -8342,8 +8028,6 @@ React中:
 A组件: {this.props.render(内部state数据)}
 C组件: 读取A组件传入的数据显示 {this.props.data} 
 ```
-
-
 
 <hr/>
 
@@ -8388,68 +8072,28 @@ componentDidCatch(error, info) {
 
 **几种通信方式：**
 
-		1.props：
-			(1).children props
-			(2).render props
-		2.消息订阅-发布：
-			pubs-sub、event等等
-		3.集中式管理：
-			redux、dva等等
-		4.conText:
-			生产者-消费者模式
+    1.props：
+    		(1).children props
+    		(2).render props
+    	2.消息订阅-发布：
+    		pubs-sub、event等等
+    	3.集中式管理：
+    		redux、dva等等
+    	4.conText:
+    		生产者-消费者模式
 
 **比较好的搭配方式：**
 
-		父子组件：props
-		兄弟组件：消息订阅-发布、集中式管理
-		祖孙组件(跨级组件)：消息订阅-发布、集中式管理、conText(开发用的少，封装插件用的多)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    父子组件：props
+    	兄弟组件：消息订阅-发布、集中式管理
+    	祖孙组件(跨级组件)：消息订阅-发布、集中式管理、conText(开发用的少，封装插件用的多)
 
 # 三. Git
 
 ## 1. 基础命令
 
 ```js
-git add <name>  			// 添加到 暂存区
+sdfgit add <name>  			// 添加到 暂存区
 git commit -m ' '			// 吧工作区的提交
 git checkout <name>			// 切换分支
 git checkout -b <name>  	// 基于什么并创建分支
@@ -8511,13 +8155,16 @@ git config --global user.email  "asdasdliuhui@sina.com"
 
 
 
+// rebase
+git rebase master 慎用
+
+
+
 ```
-
-
 
 ## 2. 连接远程仓库
 
-```nim
+```js
 1.git(github)配置密钥（私钥、ssh、公钥）
 
 1.本地安装好git；
@@ -8547,7 +8194,7 @@ git config --global user.email  "asdasdliuhui@sina.com"
 ```nim
 
 1. 修改远程仓库名字，如图：
-    
+  
    gitee中 Settings -> repository name
 
 2. 查看本地远程仓库
@@ -8555,15 +8202,15 @@ git config --global user.email  "asdasdliuhui@sina.com"
     git remote -v
     origin    git@github.com:WSS201912/linux_-imx-rel_imx_4.1.15_2.1.0_ga_ex.git (fetch)
     origin    git@github.com:WSS201912/linux_-imx-rel_imx_4.1.15_2.1.0_ga_ex.git (push)
-    
+  
 3. 删除远程仓库 origin
-        
+      
 	 git remote rm origin
-    
+  
 4. 添加远程仓库（修改过名字的远程仓库）
 
 	git remote add origin 仓库名
-        
+      
 5. 同步 master
 
 	git pull origin master
@@ -8589,38 +8236,6 @@ node_modules/
 dist/
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # 四. Node.js
 
 **项目上线相关配置   使用pm2管理应用**
@@ -8635,11 +8250,9 @@ pm2 stop 停止服务器
 pm2 start .\server.js --name web_vueshop		启动
 ```
 
-
-
 **中间件**
 
-**1.compression	做gzip压缩** 
+**1.compression	做gzip压缩**
 
 ```js
 const compression =require('compression ');
@@ -8652,8 +8265,6 @@ app.use(compression())
 const history =require('connect-history-api-fallback');
 app.use(history())
 ```
-
-
 
 # 五. WebPack
 
@@ -8696,8 +8307,6 @@ index.html 中
 <script src="./server.js"></script>   报错
 
 ```
-
-
 
 ### 2. requre.js
 
@@ -8780,8 +8389,6 @@ index.html
 npx webpack -v	查看安装版本
 ```
 
-
-
 ### 6. 原生打包
 
 ```
@@ -8791,8 +8398,6 @@ npx webpack -v	查看安装版本
 
 
 ```
-
-
 
 ### 7. 自定义配置:webpack.config.js
 
@@ -8818,8 +8423,6 @@ index.html
 
 
 ```
-
-
 
 ### 8. html-webpack-plugin
 
@@ -8850,7 +8453,7 @@ module.exports = {
 
 npx webpack 
 	生成: dist: [index.html, bundle.js]
-	
+
 问题: 能不能基于原来的index.html 操作 下个配置看
 
 ```
@@ -8878,13 +8481,13 @@ module.exports = {
             filename: 'app.html',      // 修改名称为 app.html
             inject: 'body'             // 在html body中生成script标签
         })
-        
+      
     ]
 }
 
 npx webpack 
 	生成: dist: [app.html, bundle.js]
-	
+
 问题: 每次只要  filename:换了名字 ，那么之前的html还在 怎么清除呢
 
 
@@ -8945,15 +8548,13 @@ module.exports = {
 
 如果module和 output中都配置 则优先使用 module中的generator 中的配置
 
-**1. asset/resource 发送一个单独的文件并导出url** 
+**1. asset/resource 发送一个单独的文件并导出url**
 
 **2. asset/inline 导出一个资源的Data URL**
 
 **3. asset/source 导出资源的源代码**
 
 **4. asset在导出资源的url和发送一个单独的文件中间 自动选择**
-
-
 
 **webpack.config.js**
 
@@ -8997,17 +8598,17 @@ module.exports = {
                 },
             },
             {
-                test: /\.svg$/,            
+                test: /\.svg$/,          
                 type: 'asset/inline',      // 导出一个资源的Data URL
 
             },
             {
-                test: /\.txt$/,            
+                test: /\.txt$/,          
                 type: 'asset/source',       // 导出资源的源代码
 
             },
             {
-                test: /\.png$/,           
+                test: /\.png$/,         
                 type: 'asset',              // 在resource和inline之间自动选择, 默认文件小于8k则自动是 inline
                 parser: {                   // 改变默认大小
                     dataUrlCondition: {     // 配置临界值
@@ -9020,8 +8621,6 @@ module.exports = {
 }
 
 ```
-
-
 
 **index.js**
 
@@ -9077,7 +8676,7 @@ style-loader
 
 const path = require('path')         //相当于webpack.config.js的路径
 const HtmlWebpackPlugin = require('html-webpack-plugin') //插件
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')		
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')	
 const CssMinimizerWebpackPlugin =require('css-minimizer-webpack-plugin')
 
 
@@ -9102,7 +8701,7 @@ module.exports = {
         new MiniCssExtractPlugin({      // 把css抽离 引入
             filename:'styles/[contenthash].css' // 自定义文件目录以及文件名
         }),  
-          
+        
 
     ],
     devtool: 'inline-source-map',         // 找到源代码的报错位置
@@ -9148,7 +8747,7 @@ module.exports = {
         ] 
     },
 
-    optimization:{           
+    optimization:{         
         minimizer:[
             new CssMinimizerWebpackPlugin()             //压缩css
         ]
@@ -9156,8 +8755,6 @@ module.exports = {
 }
 
 ```
-
-
 
 ### 2. babel-loader
 
@@ -9170,7 +8767,7 @@ es6有些浏览器不认识 就这么配置
     "@babel/preset-env": "^7.18.0",
     "@babel/runtime": "^7.18.0",
     "babel-loader": "^8.2.5",
-        
+      
      配置一个loader
 		{
                 test:/\.js$/,
@@ -9191,8 +8788,6 @@ es6有些浏览器不认识 就这么配置
 
 ```
 
-
-
 ### 3. 代码分离
 
 ```js
@@ -9211,12 +8806,10 @@ module.exports = {
 
     output: {                        		// 打包出口
         filename: '[name].bundle.js',       // 文件名修改成这个
-      
+    
     },
 
 ```
-
-
 
 ### 4. 代码分离2
 
@@ -9233,9 +8826,9 @@ module.exports = {
         }, 
         shared:'lodash'  
     },
-    
-    
-// 方法二  添加splitChunks属性          
+  
+  
+// 方法二  添加splitChunks属性        
     optimization: {
         minimizer: [
             new CssMinimizerWebpackPlugin()             //压缩css
@@ -9247,8 +8840,6 @@ module.exports = {
 }
 
 ```
-
-
 
 ### 5. 代码分离3
 
@@ -9289,50 +8880,6 @@ import './async-module.js'
 
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # 七. 错误原因
 
 ## 1. 概念错误
@@ -9352,8 +8899,6 @@ arr.splice(i,1).join(',')   这是头脑中的一直坚信是对的  以为这�
 arr.splice(i,1)
 arr.join(',')
 ```
-
-
 
 ## 2. 没有区分大小写的错误
 
@@ -9375,8 +8920,8 @@ Property or method "handleCurrentChange" is not defined
 ```js
 module.exports = {
   chainWebpack: config => {
-​    config.when(process.env.NODE_ENV==='production',config=>{
-​      config.entry('app').clear().add('./src/main-prod.js')
+    config.when(process.env.NODE_ENV==='production',config=>{
+      config.entry('app').clear().add('./src/main-prod.js')
 
  		 config.set('externals', {
                 vue: 'Vue',
@@ -9388,15 +8933,13 @@ module.exports = {
                 dayjs: 'dayjs',
                 'vue-router': 'Router'
             })
-​    })
-​    config.when(process.env.NODE_ENV==='development',config=>{
-​      config.entry('app').clear().add('./src/main-dev.js')
-​    })
+    })
+    config.when(process.env.NODE_ENV==='development',config=>{
+      config.entry('app').clear().add('./src/main-dev.js')
+    })
   }
 }
 ```
-
-
 
 **2.通过externals加载外部CDN资源**
 
@@ -9419,17 +8962,9 @@ module.exports = {
 }
 ```
 
-
-
-
-
-
-
-
-
 # 八. NPM 常用库
 
-<span style="background-color:pink">具体使用参考gitHub 或者 npm 包</span> 
+`<span style="background-color:pink">`具体使用参考gitHub 或者 npm 包
 
 npm：https://www.npmjs.com/  gitHub:  https://github.com/
 
@@ -9440,8 +8975,6 @@ import { nanoid } from "nanoid";    生成全球唯一的字符串 用于 :key�
 使用: id: nanoid()
 ```
 
-
-
 **2.day 日期插件**
 
 ```
@@ -9449,13 +8982,9 @@ import dayjs from 'dayjs'
 dayjs(date).format('YYYY-MM-DD HH:mm:ss');
 ```
 
-
-
 **3.vue-table-with-tree-grid   树形插件 效果**
 
 ![image-20211106170810478](typora-user-images\image-20211106170810478.png)
-
-
 
 **4 rimraf  快速删除node_modules**
 
@@ -9480,8 +9009,6 @@ import { provinceAndCityData, regionData, provinceAndCityDataPlus, regionDataPlu
 
 # 九. TypeScript
 
-
-
 ![image-20220522172334846](\typora-user-images\image-20220522172334846.png)
 
 ## 1. 基础
@@ -9489,9 +9016,7 @@ import { provinceAndCityData, regionData, provinceAndCityDataPlus, regionDataPlu
 ### 1. 环境安装
 
 1. 下载node
-
 2. cnpm  i  typescript  -g 全局安装
-
 3. tsc xxx.ts   运行ts文件
 
 ### 2. 第一个helloWord
@@ -9589,7 +9114,7 @@ let h: string;
 console.log(h)
 
 
-// 类型断言      
+// 类型断言    
 // 两种方式都行
 h = g as string;        // 告诉编译器g就是字符串
 h = <string>g;          // 这种方式也行
@@ -9648,13 +9173,13 @@ c = { name: '猪八戒', age: 18, gender: '男' }
 
 // d是个函数,返回值是函数
 let d: (a: number, b: number) => number;
-        
+      
 // d = function (n1: string, n2: string): number {
 //     return 0;
 // }
-        
-        
-        
+      
+      
+      
 
 
 ```
@@ -9714,18 +9239,6 @@ let m: myType
 
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
 # a. 第一阶段
 
 ## 1. url 到浏览器发生了什么
@@ -9736,13 +9249,9 @@ let m: myType
 
 ### 2、
 
-
-
 ① 请求发起后，游览器首先会解析这个域名，首先它会查看本地硬盘的 hosts 文件，看看其中有没有和这个域名对应的规则，如果有的话就直接使用 hosts 文件里面的 ip 地址。
 
 ② 如果在本地的 hosts 文件没有能够找到对应的 ip 地址，浏览器会发出一个 DNS请求到本地DNS(域名分布系统)服务器 。本地DNS服务器一般都是你的网络接入服务器商提供，比如中国电信，中国移动。
-
-
 
 ③查询你输入的网址的DNS请求到达本地DNS服务器之后，本地DNS服务器会首先查询它的缓存记录，如果缓存中有此条记录，就可以直接返回结果，此过程是递归的方式进行查询。如果没有，本地DNS服务器还要向DNS根服务器进行查询
 
@@ -9788,7 +9297,7 @@ let m: myType
 
 详细的就不描述了，网上很多说明的。
 
-###  5、服务器端处理
+### 5、服务器端处理
 
 服务器端收到请求后的由web服务器（准确说应该是http服务器）处理请求，诸如Apache、Ngnix、IIS等。web服务器解析用户请求，知道了需要调度哪些资源文件，再通过相应的这些资源文件处理用户请求和参数，并调用数据库信息，最后将结果通过web服务器返回给浏览器客户端。
 
@@ -9833,12 +9342,6 @@ reflow(回流)： 意味着元件的几何尺寸变了，我们需要重新验�
 有些情况下，比如修改了元素的样式，浏览器并不会立刻 reflow 或 repaint 一次，而是会把这样的操作积攒一批，然后做一次 reflow，这又叫异步 reflow 或增量异步 reflow。
 有些情况下，比如 resize 窗口，改变了页面默认的字体等。对于这些操作，浏览器会马上进行 reflow。
 
-
-
-
-
-
-
 ## 2. setState之后 发生了什么
 
 setState 作为react中使用最高的api,今天我们就来看一下setState之后,发生了什么？
@@ -9863,19 +9366,17 @@ Object.assign(
 
 ## 3. setState()更新状态是异步/同步?
 
-​    a. 执行setState()的位置?
-
-​      在react控制的回调函数中: 生命周期勾子 / react事件监听回调
-
-​      非react控制的异步回调函数中: 定时器回调 / 原生DOM事件监听回调 / promise回调 /...
-
-​    b. 异步 OR 同步?
-
-​      react相关回调中（生命周期回调、事件监听回调）: 异步
-
-​      其它异步回调中（定时器、原生DOM事件监听回调、Promsie回调）: 同步
-
-
+    a. 执行setState()的位置?
+    
+    在react控制的回调函数中: 生命周期勾子 / react事件监听回调
+    
+    非react控制的异步回调函数中: 定时器回调 / 原生DOM事件监听回调 / promise回调 /...
+    
+    b. 异步 OR 同步?
+    
+    react相关回调中（生命周期回调、事件监听回调）: 异步
+    
+    其它异步回调中（定时器、原生DOM事件监听回调、Promsie回调）: 同步
 
 ## 4. 垃圾回收
 
@@ -9925,12 +9426,6 @@ console.log(5)
 宏观任务队列
     宏任务：由宿主环境提供，比如setTimeout、setInterval、网络请求Ajax、用户I/O、script（整体代码）、UI rendering、setImmediate（node）
 
-
-
-
-
-
-
 ## 6. useState 为什么不能写在 if else 中
 
 这是因为React通过单链表来管理Hooks 。
@@ -9938,8 +9433,6 @@ console.log(5)
 update 阶段，每次调用 useState，链表就会执行 next 向后移动一步。如果将 useState 写在条件判断中，
 假设条件判断不成立，没有执行里面的 useState 方法，
 会导致接下来所有的 useState 的取值出现偏移，从而导致异常发生。
-
-
 
 ## 7. 强缓存 弱缓存
 
@@ -9953,7 +9446,7 @@ update 阶段，每次调用 useState，链表就会执行 next 向后移动一�
 
 如上图，浏览器对静态资源的HTTP缓存有两种情况，一种是强缓存(本地缓存)，另一种是弱缓存(协商缓存)。
 
-------
+---
 
 ### 缓存流程：
 
@@ -9985,7 +9478,7 @@ update 阶段，每次调用 useState，链表就会执行 next 向后移动一�
 
 弱缓存需要发送一个请求，验证这个文件是否可以使用（有没有被改动过）。
 
-------
+---
 
 ### 强缓存：
 
@@ -9995,7 +9488,7 @@ update 阶段，每次调用 useState，链表就会执行 next 向后移动一�
 
 ### Cache-Control
 
-Cache-Control 是http1.1中为了弥补`Expires`的缺陷而加入的，当Expires和Cache-Control同时存在时，Cache-Control优先级高于Expires。
+Cache-Control 是http1.1中为了弥补 `Expires`的缺陷而加入的，当Expires和Cache-Control同时存在时，Cache-Control优先级高于Expires。
 
 **选项**：
 
@@ -10060,7 +9553,7 @@ disk cache：将资源缓存到**磁盘**中，从磁盘中获取。
 
 更详细的介绍推荐这篇[文章](https://link.segmentfault.com/?enc=pwzeFy4N5ouxd9n6uUPeAQ%3D%3D.96mETHLjd446Q52uhd7vNLC%2B38OMhLUaLfMwOFzfxRHaWQ7KrSc3Tn6RV1Hvmu0M0g4c%2F3Kq2P3rmR%2BPda2YQA%3D%3D)
 
-------
+---
 
 ### 弱缓存：
 
@@ -10076,7 +9569,7 @@ last-modified是web服务器认为文件的最后修改时间，`last-modified`�
 Last-Modified: Sat, 09 Jun 2018 08:13:56 GMT 
 ```
 
-第二次请求这个文件时，浏览器把`If-Modified-Since`**发送给服务器**，询问该时间之后文件是否被修改过。
+第二次请求这个文件时，浏览器把 `If-Modified-Since`**发送给服务器**，询问该时间之后文件是否被修改过。
 
 ```javascript
 If-Modified-Since: Sat, 09 Jun 2018 08:13:56 GMT // 跟Last-Modified的值一样
@@ -10104,7 +9597,7 @@ If-None-Match: "8F759D4F67D66A7244638AD249675BE2" // 跟ETag的值一样
 
 ### **Etag/lastModified过程如下:**
 
-1. 客户端第一次向服务器发起请求,服务器将附加`Last-Modified/ETag`到所提供的资源上去
+1. 客户端第一次向服务器发起请求,服务器将附加 `Last-Modified/ETag`到所提供的资源上去
 2. 当再一次请求资源,**如果没有命中强缓存**,在执行在验证时,**将上次请求时服务器返回的Last-Modified/ETag一起传递给服务器**。
 3. 服务器检查该Last-Modified或ETag，并判断出该资源**页面自上次客户端请求之后还未被修改，返回响应304和一个空的响应体**。
 
@@ -10120,7 +9613,7 @@ If-None-Match: "8F759D4F67D66A7244638AD249675BE2" // 跟ETag的值一样
 2. If-Modified-Since能检查到的粒度是秒级的，当修改非常频繁时，Last-Modified会触发缓存，而Etag的值不会触发，重新加载。
 3. 某些服务器不能精确的得到文件的最后修改时间。
 
-------
+---
 
 ### 用户操作行为与缓存
 
@@ -10132,13 +9625,9 @@ ctrl+F5强制刷新页面强缓存，弱缓存都会失效。
 
 ### 如何设置？
 
-一般是服务器端设置这些请求头的，我自己试了用阿里云服务器设置`Cache-Control`，设置一下很方便的。
+一般是服务器端设置这些请求头的，我自己试了用阿里云服务器设置 `Cache-Control`，设置一下很方便的。
 
-------
-
-
-
-
+---
 
 ## 8. forEach、for in 、 for of三者的区别
 
@@ -10157,8 +9646,6 @@ for(var i = 0 ; i< arr.length ; i++){
 // 1 2 3 4
 
 ```
-
-
 
 ### 2. forEach
 
@@ -10199,8 +9686,6 @@ for (let o in obj) {
 
 ```
 
-
-
 ### 4. for…of
 
 它是ES6中新增加的语法，用来循环获取一对键值对中的值
@@ -10227,7 +9712,7 @@ for (let o of obj) {
 
 **一个数据结构只有部署了 Symbol.iterator 属性, 才具有 iterator接口可以使用 for of循环。例子中的obj对象没有Symbol.iterator属性 所以会报错。**
 
-<span style="background:yellow">哪些数据结构部署了 Symbol.iteratoer属性了呢?</span>
+`<span style="background:yellow">`哪些数据结构部署了 Symbol.iteratoer属性了呢?
 
 **数组 Array**
 **Map**
@@ -10320,7 +9805,7 @@ console.log(unique(arr))
 ### 2. 利用for嵌套for，然后splice去重（ES5中最常用）
 
 ```js
-function unique(arr){            
+function unique(arr){          
         for(var i=0; i<arr.length; i++){
             for(var j=i+1; j<arr.length; j++){
                 if(arr[i]==arr[j]){         //第一个等同于第二个，splice方法删除第二个
@@ -10530,12 +10015,6 @@ console.log(unique(arr));
 //代码就是这么少----（其实，严格来说并不算是一种，相对于第一种方法来说只是简化了代码）
 ```
 
-
-
-
-
-
-
 ## 10. 如何对比两个数组是否相等？
 
 ```js
@@ -10545,8 +10024,6 @@ a === b // false
 ```
 
 直接对比是不行的，因为在JavaScript中，数组和对象是按引用而不是按值进行比较的。
-
-
 
 **JSON.stringify 转为字符串后在进行对比**
 
@@ -10585,8 +10062,6 @@ equals([null] , [undefined]) // true
     )
 ```
 
-
-
 **更好的方式 用Array.prototype.every()**
 
 ```js
@@ -10602,8 +10077,6 @@ equals(a,b) // true
 equals([str], [strObj]) // false
 equals([null], [undefined]) // false
 ```
-
-
 
 **如何数组是乱序如何处理 用Array.prototype.filter()**
 
@@ -10640,8 +10113,6 @@ equals([null], [undefined]) // false
     }
 ```
 
-
-
 ## 11. 判断两个对象是否相同
 
 **ES6中有⼀个⽅法判断两个对象是否相等，这个⽅法判断是两个对象引⽤地址是否⼀致**
@@ -10654,7 +10125,7 @@ let obj2 = {
     a: 1
 }
 let obj3 = obj1
-    
+  
     console.log(Object.is(obj1, obj2)) // false
     console.log(Object.is(obj2, obj3)) // false
     console.log(Object.is(obj1, obj3)) // true
@@ -10680,7 +10151,7 @@ let obj3 = obj1
         },
         a: 1
     }
-    
+  
    
      let obj3 = {
         a: 1,
@@ -10694,7 +10165,7 @@ let obj3 = obj1
         },
         a: 1
     }
-    
+  
     function isObjectValueEqual(a, b) {
         // 判断两个对象是否指向同⼀内存，指向同⼀内存返回true
         if (a === b) return true
@@ -10723,8 +10194,6 @@ let obj3 = obj1
     console.log(isObjectValueEqual(obj1, obj2))  // true
 	console.log(isObjectValueEqual(obj3, obj4))  // false
 ```
-
-
 
 ## 12. 深拷贝
 
@@ -10811,7 +10280,7 @@ let obj3 = obj1
             /* flex-direction:column; */
             /* flex-direction:column-reverse; */
 
-            
+          
             /* 用于父元素的属性 */
             /* display:flex;
             flex-direction:xx ;
@@ -10842,8 +10311,8 @@ let obj3 = obj1
             align-self: flex-start;
             flex: 1;
             order: 3;
-          
-           
+        
+         
         }
 
         .box2 {
@@ -10851,11 +10320,11 @@ let obj3 = obj1
             width: 200px;
             flex: 1;
             order: 2;
-            
+          
         }
 
         .box3 {
-           
+         
             background-color: blue;
             width: 200px;
             align-self: flex-end;
@@ -10879,7 +10348,7 @@ let obj3 = obj1
 
 ## 14. react跨域问题
 
-> 跨域问题可以说是前后端分离项目中经常面对的问题，事实上解决跨域问题的方法也有很多种，本篇文章将针对React项目在开发以及部署到`Nginx`服务器后如何解决跨域问题进行讲解，希望对大家有所帮助。
+> 跨域问题可以说是前后端分离项目中经常面对的问题，事实上解决跨域问题的方法也有很多种，本篇文章将针对React项目在开发以及部署到 `Nginx`服务器后如何解决跨域问题进行讲解，希望对大家有所帮助。
 
 #### 一、开发模式——配置代理
 
@@ -10888,8 +10357,6 @@ let obj3 = obj1
 ##### 方法一：配置package.json
 
 在package.json中追加如下配置，对应后端的ip和端口即可。
-
-
 
 ```json
 "proxy":"http://localhost:5000"
@@ -10908,7 +10375,6 @@ let obj3 = obj1
    ```undefined
    在src下创建配置文件：src/setupProxy.js
    ```
-
 2. 编写setupProxy.js配置具体代理规则：
 
    ```js
@@ -10940,9 +10406,7 @@ let obj3 = obj1
 1. 优点：**可以配置多个代理**，可以灵活的控制请求是否走代理。
 2. 缺点：配置繁琐，前端请求资源时必须加前缀。
 
-需要注意的是，在创建React脚手架的时候就已经默认有`http-proxy-middleware`模块了，如果没有的话，则手动执行：`yarn add http-proxy-middleware`来下载。需要注意的是，`http-proxy-middleware`模块的引入可能会因为版本问题而报错。如果上面的引入方式报错的话，那么就需要改为下面这种方式（对应使用到`proxy`的地方也要换成`createProxyMiddleware`）,因为这个中间件最新的1.0.0版本已经对模块的引用作了明确的要求：
-
-
+需要注意的是，在创建React脚手架的时候就已经默认有 `http-proxy-middleware`模块了，如果没有的话，则手动执行：`yarn add http-proxy-middleware`来下载。需要注意的是，`http-proxy-middleware`模块的引入可能会因为版本问题而报错。如果上面的引入方式报错的话，那么就需要改为下面这种方式（对应使用到 `proxy`的地方也要换成 `createProxyMiddleware`）,因为这个中间件最新的1.0.0版本已经对模块的引用作了明确的要求：
 
 ```jsx
 const { createProxyMiddleware } = require('http-proxy-middleware');
@@ -10950,16 +10414,14 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 #### 二、生产模式or正式部署到Nginx服务器上
 
-我们知道，我们执行`npm start`能够把前端项目跑起来实际上是因为我们把项目放在了node帮我们启动的服务器上面，但是遗憾的是，我们原先配置的代理，在我们把打包后的文件部署到Nginx后，是不起作用的。
+我们知道，我们执行 `npm start`能够把前端项目跑起来实际上是因为我们把项目放在了node帮我们启动的服务器上面，但是遗憾的是，我们原先配置的代理，在我们把打包后的文件部署到Nginx后，是不起作用的。
 这个时候，我们就不得不重新面对跨域这个问题了，其实解决的问题也有很多
 
 ##### （1）如果是后台是Java项目的话，可以在后端配置同源Cors。
 
 ##### （2）如果后台不解决，那么我们可以通过Nginx的反向代理来解决这个问题
 
-比如说，我们有个前端的请求是：`ip:port/s1/custom/add`，现在我们想要把`/s1`开头的请求转发到其他服务器来处理，我们可以这么配置：
-
-
+比如说，我们有个前端的请求是：`ip:port/s1/custom/add`，现在我们想要把 `/s1`开头的请求转发到其他服务器来处理，我们可以这么配置：
 
 ```kotlin
  server {
@@ -10973,9 +10435,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 }
 ```
 
-当nginx匹配到`/s1`开头的请求时，就会重写请求路径，根据上面的正则配置，会取出`/s1`部分后面的内容作为新的请求路径，最终代理服务器拼接后的结果是：`ip:port/custom/add`。通过这种方式，我们就可以解决前端项目跨域请求的问题啦。
-
-
+当nginx匹配到 `/s1`开头的请求时，就会重写请求路径，根据上面的正则配置，会取出 `/s1`部分后面的内容作为新的请求路径，最终代理服务器拼接后的结果是：`ip:port/custom/add`。通过这种方式，我们就可以解决前端项目跨域请求的问题啦。
 
 ## 15. 相对定位绝对定位
 
@@ -10991,11 +10451,7 @@ position: absolute;绝对定位：绝对定位是相对于元素**最近的已�
  top: 20px;
 }
 
- 
-
 ![css绝对定位和相对定位的区别 - Amy - Amy——做一根有思想的芦苇](http://www.w3school.com.cn/i/ct_css_positioning_absolute_example.gif)
-
- 
 
 **二：相对定位**
 
@@ -11084,7 +10540,7 @@ position:relative不会隐式改变display的类型。
     asy()
 ```
 
-## 17. async/await执行顺序 
+## 17. async/await执行顺序
 
 2021-05-08 09:59:43
 
@@ -11111,8 +10567,6 @@ position:relative不会隐式改变display的类型。
 // 123 789 1 456
 ```
 
-
-
 ### 1、什么是async、await？
 
 >   async / await 是Generator函数的语法糖，原理是通过Generator函数 + 自动执行器 实现的，这使得async / await 跟普通函数一样，不用一直 next( ) 执行了。
@@ -11133,16 +10587,16 @@ position:relative不会隐式改变display的类型。
       let y = await 6;
       console.log(y);
     }
-    
+  
   	foo();
     doo();
     console.log('start:');
-	
+
 	// start:
 	// 6
 	// f 函数执行成功的结果
 
-    
+  
     doo();
     foo();
     console.log('start:');
@@ -11241,9 +10695,7 @@ position:relative不会隐式改变display的类型。
 - 当await 接收的值非Promise 对象时，它会将返回值包装成Promise.then(返回值)将值和恢复执行的消息一起添加到消息队列中；
 - 如果是Promise对象，**先添加到消息队列，等待可用值**；等有可用值后**再把恢复执行的消息添加到消息队列**；有两个添加到消息队列的操作。
 
-
-
-## 18. 
+## 18.
 
 ## 19.冒泡、捕获、阻止、委托
 
@@ -11325,8 +10777,6 @@ if (target.nodeName.toLocaleLowerCase() === 'li') {
 // 精确地匹配到某一类 #list li 元素之上；
 ```
 
-
-
 ## 20. axios 请求拦截器&响应拦截器
 
 ![img](https://csdnimg.cn/release/blogv2/dist/pc/img/reprint.png)
@@ -11366,9 +10816,6 @@ if (target.nodeName.toLocaleLowerCase() === 'li') {
        timeout: 15000  // 毫秒
    })
    ```
-
-   
-
 2. baseURL设置：
 
    ```javascript
@@ -11386,22 +10833,21 @@ if (target.nodeName.toLocaleLowerCase() === 'li') {
        ...
    })
    ```
-
 3. 修改实例配置的三种方式
 
    ```javascript
    // 第一种：局限性比较大
    axios.defaults.timeout = 1000;
    axios.defaults.baseURL = 'xxxxx';
-   
-   
+
+
    // 第二种：实例配置
    let instance = axios.create({
        baseURL: 'xxxxx',
        timeout: 1000,  // 超时，401
    })
-   
-   
+
+
    // 创建完后修改
    instance.defaults.timeout = 3000
    // 第三种：发起请求时修改配置、
@@ -11420,7 +10866,7 @@ instance.interceptors.request.use(req=>{}, err=>{});
 
 // 响应拦截器
 instance.interceptors.reponse.use(req=>{}, err=>{});
-```
+   ```
 
 从上可以看出，instance依然是第二步中创建的实例，然后对其进行拦截，请求用request，响应用reponse，二者都有两个配置项，一个是成功配置，一个是error配置。
 
@@ -11439,9 +10885,6 @@ instance.interceptors.reponse.use(req=>{}, err=>{});
        return Promise.reject(err)
    })
    ```
-
-   
-
 2. 响应拦截器
 
    ```javascript
@@ -11459,9 +10902,6 @@ instance.interceptors.reponse.use(req=>{}, err=>{});
    
    })
    ```
-
-   
-
 3. 常见错误码处理(error)
 
    axios请求错误时，可在catch里进行错误处理。
@@ -11474,7 +10914,7 @@ instance.interceptors.reponse.use(req=>{}, err=>{});
 
    但实际开发过程中，一般在请求/响应拦截器中统一做错误处理，有特殊接口的话做单独的catch错误处理
 
-### 四、 axios请求拦截器的案例 
+### 四、 axios请求拦截器的案例
 
 axios请求发送之前，拦截请求，在请求中加入从cookie中获取到的csrftoken值。以解决后端接口[csrf](https://so.csdn.net/so/search?q=csrf&spm=1001.2101.3001.7020)验证问题。
 
@@ -11504,7 +10944,7 @@ axios_instance.interceptors.request.use(config => {
   * 这样就完成了使用axios发送请求的正确配置了，同时保证了网站免受csrf攻击的影响.
   */
 
-    
+  
   config.headers['X-Requested-With'] = 'XMLHttpRequest';
   let regex = /.*csrftoken=([^;.]*).*$/; // 用于从cookie中匹配 csrftoken值
   config.headers['X-CSRFToken'] = document.cookie.match(regex) === null ? null : 		        document.cookie.match(regex)[1];
@@ -11512,7 +10952,7 @@ axios_instance.interceptors.request.use(config => {
   return config
 
 }, err => {
-    
+  
   // 请求未成功发出，如：没有网络...
   return Promise.reject(err)
 })
@@ -11562,10 +11002,6 @@ export {
 在需要拦截请求or响应的地方，就可以使用新建的axios实例来发起异步请求；
 而不需要拦截请求/响应的地方，就可以直接使用axios来发起异步请求！！！**
 
-
-
-
-
 # b. 第二阶段
 
 ## 1. react组件中箭头函数的使用
@@ -11596,12 +11032,10 @@ s的值取决于函数的调用方式，如果被一个对象调用，那么this
 forEach循环 — window
 定时器,延时器 — window
 对象中的函数 const obj = { fun: function(){} } — 对象本身(看具体调用方式，总之是fun的直接调用者)
-事件绑定事件处理函数 oDiv.addEventListener('click' , function(){}) — 绑定事件的标签，如<div>...</div>
+事件绑定事件处理函数 oDiv.addEventListener('click' , function(){}) — 绑定事件的标签，如`<div>`...`</div>`
 
 **2. 箭头函数**
 因为没有prototype，箭头函数没有自己的this，它的函数体中使用的this，其实是继承自 定义它时所在的普通函数的this（如果定义在全局就指向全局对象window/undefined）。this是在上下文创建时确定的，因此箭头函数的父级（函数或全局对象）创建上下文时，箭头函数体内的this也可以说是“绑定”了。
-
-
 
 ```js
 document.addEventListener('click', function() {
@@ -11619,7 +11053,7 @@ document.addEventListener('click', ()=> {
             // 箭头函数的this，跟随它的父级程序forEach函数，因此也是window
             console.log(key, this);                                    	 // window
         })
-        
+      
         // item.addEventListener('click',function() {  <li>...</li>
         //     console.log(key, this);
         // })
@@ -11650,7 +11084,7 @@ let bar = fn.call(obj1); // fn 的 this指向obj1，并返回了箭头函数赋�
 bar.call(obj2); // 听风是风
 ```
 
-<span style="color:red">**bar就是箭头函数**</span>，可以看到当我们企图用call把它绑定给obj2并执行的时候，箭头函数内的this仍然指向obj1，显示绑定失败了。
+`<span style="color:red">`**bar就是箭头函数**，可以看到当我们企图用call把它绑定给obj2并执行的时候，箭头函数内的this仍然指向obj1，显示绑定失败了。
 
 这里指的是无法直接给箭头函数通过显示绑定修改this指向。修改外层函数this指向从而间接修改箭头函数this当然是可行的。
 
@@ -11670,7 +11104,6 @@ fn.call(obj1)(); //fn this指向obj1,箭头函数this也指向obj1
 fn.call(obj2)(); //fn this 指向obj2,箭头函数this也指向obj2
 ```
 
-
 **四、箭头函数的调用（这边以React组件举例）**
 **1. 无参数**
 可以直接使用函数名，因为整个函数赋值给了press，这样就不会出现初始化时自动调用。这种方式千万不要在后面加()
@@ -11683,7 +11116,6 @@ press = () => {
 };
 <Text onPress={this.press}>{this.state.data}</Text>
 ```
-
 
 **2. 有参数**
 必须使用箭头函数的形式调用，因为加括号会直接调用函数
@@ -11715,14 +11147,12 @@ press(num) {
 <Text onPress={this.press.bind(this,2)}>{this.state.data}</Text>
 ```
 
-
 **4 传递React 的事件对象 e**
 
 ```react
 <button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
 <button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>
 ```
-
 
 在这两种情况下，React 的事件对象 e 会被作为第二个参数传递。如果通过箭头函数的方式，事件对象必须显式的进行传递，而通过 bind 的方式，事件对象以及更多的参数将会被隐式的进行传递。
 
@@ -11795,11 +11225,10 @@ let obj = {
 }
 ```
 
-
 在React组件中使用原型方法，比如传入子组件或作为事件回调时，需要手动绑定this，不然会找不到正确的this。
 像这样
 
-<button onClick={this.handleClick.bind(this)}></button>
+`<button onClick={this.handleClick.bind(this)}></button>`
 
 再看ES6的写法如何确定原型方法的this。如下只有第一种方式(直接使用this.jump)不能指向Dog的实例。
 
@@ -11861,7 +11290,7 @@ class Dog extends React.Component {
 第六种
 ```
 
-上面除了第一种<Text onPress={this.jump}>原型方法直接使用时</Text>虽然都能实现需求，但第四种<Text onPress={() => this.drink()}>原型方法调用时用箭头函数绑定this</Text>，问题在于每次渲染 Dog 时都会创建不同的回调函数。在大多数情况下都没什么问题，但如果该回调函数作为 prop 传入子组件时，这些组件可能会进行额外的重新渲染。因此通常还是建议run = () => {}箭头函数的写法（class fields语法）和在构造器种绑定this的方式。
+上面除了第一种`<Text onPress={this.jump}>`原型方法直接使用时`</Text>`虽然都能实现需求，但第四种<Text onPress={() => this.drink()}>原型方法调用时用箭头函数绑定this`</Text>`，问题在于每次渲染 Dog 时都会创建不同的回调函数。在大多数情况下都没什么问题，但如果该回调函数作为 prop 传入子组件时，这些组件可能会进行额外的重新渲染。因此通常还是建议run = () => {}箭头函数的写法（class fields语法）和在构造器种绑定this的方式。
 ————————————————
 版权声明：本文为CSDN博主「雨浅听风吟」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/weixin_39289876/article/details/122534211
@@ -11872,38 +11301,26 @@ class Dog extends React.Component {
 
 1. hash值得变化不会向后端发送请求，后端检测不到前端路由得变化
 2. 而且 hash 改变会触发 hashchange 事件，浏览器的进后退也能对其进行控制
-
 3. hash 本来是拿来做页面定位的，如果拿来做路由的话，原来的锚点功能就不能用了
 4. hash 的传参是基于 url 的，如果要传递复杂的数据，会有体积的限制
 5. 不美观得问题
 
-​	------------------------------------------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------------------------------
 
   **2. history模式**
 
 1. history 模式不仅可以在url里放参数，还可以将数据存放在一个特定的对象中
-
 2. 但是它也有个问题：不怕前进，不怕后退，就怕刷新，（如果后端没有准备的话），因为刷新是实实在在地去请求服务器的。
-
-
 
   **3. 主要得区别**
 
-​	在hash模式下，前端路由修改的是#中的信息，而浏览器请求时不会将 # 后面的数据发送到后台，所以没有问题。
-
-​	但是在history下，你修改path时，当刷新时，如果服务器中没有相应的响应或者资源，则会刷新出来404页面。
-
-
-
-
-
-
+    在hash模式下，前端路由修改的是#中的信息，而浏览器请求时不会将 # 后面的数据发送到后台，所以没有问题。
+    
+    但是在history下，你修改path时，当刷新时，如果服务器中没有相应的响应或者资源，则会刷新出来404页面。
 
 ## 3. React跳转路由传参4种方法和区别
 
-
-
-<span style="color:red;font-weight:800;font-size:20px">1）.params</span>
+`<span style="color:red;font-weight:800;font-size:20px">`1）.params
 
 ```react
 
@@ -11922,14 +11339,11 @@ this.props.history.push( '/Inbox/'+'01008' )
 this.props.match.params.id 
 ```
 
-
 **优势 ： 刷新，参数依然存在**
 
 **缺点 ： 只能传字符串，并且，如果传的值太多的话，url会变得长而丑陋。**
 
-
-
-<span style="color:red;font-weight:800;font-size:20px">2）、query</span>
+`<span style="color:red;font-weight:800;font-size:20px">`2）、query
 
 ```react
 
@@ -11941,7 +11355,7 @@ this.props.history.push( {pathname:'/Inbox',query:{id:'01009'}} )
 
 
 <Route path='/Inbox' component={Inbox} />
-    
+  
 this.props.location.query.id
 ```
 
@@ -11949,9 +11363,7 @@ this.props.location.query.id
 
 **缺点：刷新地址栏，参数丢失（不管是hash方式，还是Browser模式都会丢失参数）**
 
-
-
-<span style="color:red;font-weight:800;font-size:20px">3）、state</span>
+`<span style="color:red;font-weight:800;font-size:20px">`3）、state
 
  同query差不多，只是属性不一样，而且state传的参数是加密的，query传的参数是公开的，只需要把query改为state即可。
 
@@ -11971,9 +11383,7 @@ this.props.location.state.id
 
 **缺点：刷新地址栏，（hash方式会丢失参数，Browser模式不会丢失参数）**
 
-
-
-<span style="color:red;font-weight:800;font-size:20px">4）、search</span>
+`<span style="color:red;font-weight:800;font-size:20px">`4）、search
 
 ```react
 声明式导航
@@ -11982,20 +11392,16 @@ this.props.location.state.id
 this.props.history.push({pathname:'/Inbox',search:'?a=1&b=2'})
 
 <Route path='/Inbox' component={Inbox} />
-    
+  
 取值：
 this.props.location.search
 ```
 
 **用location.search所获取的是查询字符串，所以，还需要进一步的解析，自己自行解析，也可以使用第三方模块：qs，或者nodejs里的query-string**
 
-
-
-
-
 # c. 算法
 
-### 1. 写一个算法实现{[()]}
+### 1. 写一个算法实现
 
 ```js
 /*
@@ -12005,14 +11411,14 @@ this.props.location.search
         示例4: ([)]     false
         示例3: {[()]}   true
         示例3: {{}}   true
-        
+      
     */
 
     let str = "{[()]}"   // true
 
     function fn(str) {
 
-      
+    
         console.log(str.length)
         if (str.length % 2 !== 0) return false
 
@@ -12043,7 +11449,7 @@ this.props.location.search
                 }
             }
 
-        
+      
         console.log(obj)
         return arr.length === 0 ? true : false;
 
@@ -12085,7 +11491,7 @@ this.props.location.search
             return _a++;
         }
     })
-    
+  
     if (b === 1 && b === 2 && b === 3) {
         console.log(true)
     }
@@ -12131,8 +11537,6 @@ Array.prototype.myMap = function (fn) {
 
 ```
 
-
-
 ### 5. 手动实现reduce
 
 ```js
@@ -12157,7 +11561,7 @@ Array.prototype.myReduce = function(fn, initValue) {
     for (let i = 0; i < this.length; i++) {
       initValue = fn(initValue, this[i], i, this);
     }
-    return initValue;	
+    return initValue;
 };
 const arr1 = [1, 2, 3];
 const sum = arr1.myReduce((perv, current) => {
@@ -12184,7 +11588,7 @@ console.log(sum);
     function CountMax(arr) {
         let arr2 = arr.join("").split("0")  //110111 	['11','111']
         let len = 0;
-        
+      
         arr2.forEach(v => {
             if (len < v.length) len = v.length
         })
@@ -12217,7 +11621,7 @@ function sleep(time) {
     }
 
     async function output() {
-        
+      
         for (let i = 3; i > 0; i--) {
             let red = await sleep(1000);
             console.log("红灯 " + i);
@@ -12257,7 +11661,7 @@ function queryString(str) {
     let str = "http://www.baidu.com?a=1&b=2&c=&a=5&d=xxx&a=6&b=6"
     console.log(  queryString(str))
 
-    
+  
 ```
 
 ### 10. 列表按照顺序输出
@@ -12273,8 +11677,6 @@ let orderOffers = [
         ...offers.filter(v => v.groupName === 'ggg'),
       ]
 ```
-
-
 
 # d. React功能
 
@@ -12442,57 +11844,4 @@ export default function Timer({ continueTimer }) {
 
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # ???
-
-# 
-
-
-
-# 
-
-
-
-# 
-
-
-
-# 
-
-# 
-
-
-
-# 
-
-
-
-# 
-
-
-
-
-
-
-
-# 
-
-# 
-
-# 
-
-
-
