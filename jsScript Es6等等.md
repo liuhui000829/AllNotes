@@ -8148,6 +8148,7 @@ git push -u origin master 推送到远程			// 第一次需要加u
 
 // 合并代码
 git merge Kyrie 合并完成 提交到远程
+git merge --no-ff -m "merge with no-ff" 分支名称   // 这个可以追查到记录 
 
 //配置用户名 和邮箱
 git config --global user.name  "liuhui000829"
