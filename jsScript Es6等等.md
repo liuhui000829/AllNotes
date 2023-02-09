@@ -8455,24 +8455,54 @@ git checkout <name>			// 切换分支
 git checkout -b <name>  	// 基于什么并创建分支
 
 git branch   			    // 查看本地分支
-git branch -d  分支名 		  // 删除本地分支
 git branch -a				// 查看本地跟远程的分支
+
+git branch -d  分支名 		  // 删除本地分支
 git push origin -d 分支名    // 删除远程分支
+
+
+// 暂存到内存中
+git stash   
+git stash命令的作用就是将目前还不想提交的但是已经修改的内容进行保存，后续可以在任何分支上进行恢复。它的作用范围包括工作区和暂存区中的内容，也就是说git add但没有git commit的内容和没有git add的内容都会被保存，所有的内容会保存在内存中，每次保存的内容会以stash@{index}为头标题的方式显示。
+
+
+1、git stash ：保存所有未提交的修改
+2、git stash save <message> ：保存所有未提交的修改，并添加注释信息。（推荐使用方式）
+3、git stash list ：查看内存中所有保存的stash
+4、git stash apply：将stash@{0}应用到当前目录下，内存中stash不做任何修改
+5、git stash apply "stash@{1}" || git stash apply --index 1：将stash@{1}的内容应用到当前目录下，内存中stash不做任何修改。
+
+
+————————————————
+版权声明：本文为CSDN博主「斯图尔te」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/ThisEqualThis/article/details/103362644
 
 
 // 版本回退
 git log  // 查看提交的日志
 git reflog // 查看所有的日志
+git reset --hard <commitID> 回退版本  即便是已经删除很久的 也可以恢复
+
+
+// 同步代码
+git pull指令执行之后，从远程拉取代码到本地，会自动执行一个merge操作 
+git merge --abort   // 终止合并
+git reset --merge   // 重置合并
+git pull			// 重新拉取代码
+
+
+git pull origin master  // 同步master的代码
 
 
 
+。
 
 
-git push -u origin <name> 推送到远程			// 第一次需要加u
 
-合并代码
-master   Kyrie
-Kyrie 提交所有代码  切换到 master分支 先跟远程同步一下(不然是本地代码) 
+// 推送到远程
+git push -u origin master 推送到远程			// 第一次需要加u
+
+// 合并代码
 git merge Kyrie 合并完成 提交到远程
 
 //配置用户名 和邮箱
