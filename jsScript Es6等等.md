@@ -8093,7 +8093,7 @@ componentDidCatch(error, info) {
 ## 1. 基础命令
 
 ```js
-sdfgit add <name>  			// 添加到 暂存区
+git add <name>  			// 添加到 暂存区
 git commit -m ' '			// 吧工作区的提交
 git checkout <name>			// 切换分支
 git checkout -b <name>  	// 基于什么并创建分支
@@ -8145,6 +8145,12 @@ git pull			// 重新拉取代码
 
 
 git pull origin master  // 同步master的代码
+
+
+// amend
+git commit --amend
+
+// 覆盖上一次的message 或者文件  前提是要 git add   amend之后吧之前的commit信息变成了现在的哈哈
 
 
 
