@@ -2713,6 +2713,14 @@ function loadingIMg(path) {
     })()
 ```
 
+#### 
+
+
+
+
+
+
+
 ### 2. 构造函数 、原型、继承
 
 #### 1.1 概述 :
@@ -3387,6 +3395,114 @@ Javascript语言的特殊之处，就在于函数内部可以直接读取全局�
     }
     document.addEventListener('mousemove', throttling(mouseMove, 3000, true))
 ```
+
+### 5. 事件轮询
+
+```js
+示例：
+ 
+console.log('start');
+ 
+var intervalA = setInterval(() => {
+  console.log('intervalA');
+}, 0);
+ 
+setTimeout(() => {
+  console.log('timeout');
+ 
+  clearInterval(intervalA);
+}, 0);
+ 
+var intervalB = setInterval(() => {
+  console.log('intervalB');
+}, 0);
+ 
+var intervalC = setInterval(() => {
+  console.log('intervalC');
+}, 0);
+ 
+new Promise((resolve, reject) => {
+  console.log('promise');
+ 
+  for (var i = 0; i < 10000; ++i) {
+    i === 9999 && resolve();
+  }
+ 
+  console.log('promise after for-loop');
+}).then(() => {
+  console.log('promise1');
+}).then(() => {
+  console.log('promise2');
+ 
+  clearInterval(intervalB);
+});
+ 
+new Promise((resolve, reject) => {
+  setTimeout(() => {
+    console.log('promise in timeout');
+    resolve();
+  });
+ 
+  console.log('promise after timeout');
+}).then(() => {
+  console.log('promise4');
+}).then(() => {
+  console.log('promise5');
+ 
+  clearInterval(intervalC);
+});
+ 
+Promise.resolve().then(() => {
+  console.log('promise3');
+});
+ 
+console.log('end');
+
+
+
+start
+promise
+promise after for-loop
+promise after timeout
+end
+promise1
+promise3
+promise2
+intervalA
+timeout
+intervalC
+promise in timeout
+promise4
+promise5
+
+
+详细讲解分析：
+
+识别log一般函数方法，输出“start”（1）；
+识别intervalA、setTimeout、intervalB、intervalC为特殊的异步方法，依次放入宏任务队列1，并设置了一个 0ms的立即执行标识；
+识别new promise的resolve方法为一般方法，输出“promise”（2）、“promise after for-loop”（3）；
+识别.then()方法为特殊的异步方法，放入微任务队列1；
+识别new promise的resolve方法里面的setTimeout，放入宏任务队列1，输出“promise after timeout”（4）；
+识别promise的.then()方法，放入微任务队列1；
+识别log一般函数方法，输出“end”（5）；
+识别微任务队列1，执行.then()方法，输出“promise1”（6），识别.then()方法，将其放入微任务队列1的队尾；
+继续识别微任务队列1，执行promise的.then()方法，输出“promise3”（7），识别微任务队尾，执行.then()方法，输出“promise2”（8）并清除定时器intervalB；
+微任务队列1执行完毕，识别宏任务队列1，识别intervalA，输出“intervalA”（9）；识别setTimeout，输出“timeout”（10）并清除定时器intervalA；识别intervalC，输出“intervalC”（11）；执行setTimeout，输出“promise in timeout”（12）。宏任务结束；
+识别new promise的resolve方法里面的setTimeout，根据其.then()方法，输出“promise4”（13）；识别.then()方法并将其放置微任务队列队尾，执行并输出“promise5”（14）。
+————————————————
+版权声明：本文为CSDN博主「今天也要爱小姜」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/m0_63021947/article/details/123462220
+
+
+```
+
+
+
+
+
+
+
+
 
 ## 4.flex
 
@@ -8141,10 +8257,12 @@ git reset --hard <commitID> 回退版本  即便是已经删除很久的 也可�
 git pull指令执行之后，从远程拉取代码到本地，会自动执行一个merge操作 
 git merge --abort   // 终止合并
 git reset --merge   // 重置合并
-git pull			// 重新拉取代码
-
-
+git pull			// 重新同步代码
 git pull origin master  // 同步master的代码
+
+git fetch 是将远程主机的最新内容拉到本地，用户在检查了以后决定是否合并到工作本机分支中
+git pull 则是将远程主机的最新内容拉下来后直接合并，即：git pull = git fetch + git merge，这样可能会产生冲突，需要手动解决。
+
 
 
 // amend
@@ -9665,19 +9783,17 @@ for(var i = 0 ; i< arr.length ; i++){
 
 ### 2. forEach
 
-对数组的每一个元素执行一次提供的函数（不能使用return、break等中断循环），不改变原数组，无返回值undefined。
+对数组的每一个元素执行一次提供的函数（不能使用、break,continue等中断循环）可以使用return中断循环，不改变原数组，无返回值undefined。
 
 ```js
 let arr = ['a', 'b', 'c', 'd']
 arr.forEach(function (val, idx, arr) {
+    if(val==='a') return
     console.log(val + ', index = ' + idx) // val是当前元素，index当前元素索引，arr数组
     console.log(arr)
 })
 
 输出结果：
-
-a, index = 0
-(4) ["a", "b", "c", "d"]
 b, index = 1
 (4) ["a", "b", "c", "d"]
 c, index = 2
@@ -9994,17 +10110,17 @@ console.log(unique(arr))
 
 ```js
 function arrayNonRepeatfy(arr) {
-  let map = new Map();
-  let array = new Array();  // 数组用于返回结果
-  for (let i = 0; i < arr.length; i++) {
-    if(map .has(arr[i])) {  // 如果有该key值
-      map .set(arr[i], true); 
-    } else { 
-      map .set(arr[i], false);   // 如果没有该key值
-      array .push(arr[i]);
+    let map = new Map();
+    let array = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        if (!map.has(arr[i])) {
+            map.set(arr[i], true)
+            array.push(arr[i])
+        }
     }
-  } 
-  return array ;
+    return array
+
 }
  var arr = [1,1,'true','true',true,true,15,15,false,false, undefined,undefined, null,null, NaN, NaN,'NaN', 0, 0, 'a', 'a',{},{}];
     console.log(unique(arr))
