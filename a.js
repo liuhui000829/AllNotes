@@ -1,19 +1,40 @@
-function unique(arr) {
-    if (!Array.isArray(arr)) {
-        console.log('type error!')
-        return
-    }
-    var array = [];
-    for (var i = 0; i < arr.length; i++) {
-        if (array.indexOf(arr[i]) === -1) {
-            array.push(arr[i])
+// let a = [1, 2, 3].reduce((pre, current) => {
+//     console.log(pre, current)
+// }, 0)
+
+
+let b = [1, 1, 0, 1, 1, 1, 0, 1, 1,1,1]   //输出3
+
+
+let sum = 0;
+let Max = 0;
+function CountMax() {
+
+    for (let i = 0; i < b.length; i++) {
+        sum += b[i];
+        if (b[i] === 0 || i === b.length - 1) {
+            if (sum > Max) {
+                Max = sum;
+                sum = 0;
+            }
         }
     }
-    return array;
+    return Max;
 }
-var arr = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+console.log(
 
-console.log(unique(arr))
+    CountMax(b)
+)
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -11706,7 +11706,7 @@ console.log(sum);
 
 ```js
     let arr1 = [1, 2, 3, 4, 3, 4]
-        let arr2 = [3, 4, 5]
+    let arr2 = [3, 4, 5]
 
         let [s1, s2] = [new Set(arr1), new Set(arr2)]
         Array.from(s1).filter(v => s2.has(v)) 
@@ -11729,6 +11729,24 @@ console.log(sum);
     console.log(
         CountMax(a)
     )
+
+
+
+let sum = 0;
+let Max = 0;
+function CountMax() {
+
+    for (let i = 0; i < b.length; i++) {
+        sum += b[i];
+        if (b[i] === 0 || i === b.length - 1) {
+            if (sum > Max) {
+                Max = sum;
+                sum = 0;
+            }
+        }
+    }
+    return Max;
+}
 ```
 
 ### 8. 红绿灯问题
