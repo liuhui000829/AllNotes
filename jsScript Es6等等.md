@@ -3134,9 +3134,13 @@ fun.call(thisArg, arg1, arg2)
         this.score = score;             // 还可以添加自己的属性
     }
 
+
+	
     // Zi.prototype = Fu.prototype;       // 这样赋值有问题,直接把父原型对象赋值给子原型对象,那么f身上也有了z的方法
-    Zi.prototype = new Fu(); 			// 参考 x         
-    Zi.prototype.constructor = Zi;
+	// Zi.prototype = new Fu(); 			  // 参考 x          // 这种写法 父构造函数执行了两次，	
+	Zi.prototype = Object.create(Fu.prototype) ;   // 寄生组合继承这个就是关键的代码   
+	
+    Zi.prototype.constructor = Zi;			// 一定要把构造器再次只想自己
     Zi.prototype.exam = function () {
         return "考试";
     }
@@ -5807,6 +5811,11 @@ b. 真实dom
 
 ### 10. 受控/非受控组件
 
+
+
+1. 广义上 ： 组件的渲染是否通过 调用者传递的props完全控制，控制则为受控组件，否则为非
+2. 狭义上: 在from表单中 使用ref从dom表单来获取数据，为非受控
+
 1. 受控组件: 页面上所有输入类的DOM  随着用户的输入把数据维护状态中去 等用的时候直接从状态中取
 2. 非受控组件: 页面上所有输入类的DOM 现用现取， 非受控组件上有时候不可避免的使用ref 但是ref不推荐过多使
 
@@ -7923,6 +7932,70 @@ function Child({ callback }) {
 
 useEffect、useMemo、useCallback都是自带闭包的。也就是说，每一次组件的渲染，其都会捕获当前组件函数上下文中的状态(state, props)，所以每一次这三种hooks的执行，反映的也都是当前的状态，你无法使用它们来捕获上一次的状态。对于这种情况，我们应该使用ref来访问。
 
+#### 5. 自定义hooks
+
+```jsx
+
+import React, { useState } from "react";
+
+const useHandleClick = (ev) => {
+  let [text, setText] = useState("");
+  let [list, setList] = useState(["aa", "bb", "cc"]);
+
+  const handleClick = (ev) => {
+    setText(ev.target.value);
+  };
+  const addClick = (ev) => {
+    setList([...list, text]);
+    setText("");
+  };
+  const handleDel = (i) => {
+    setList(list.filter((v, index) => index !== i));
+  };
+  return { handleClick, addClick, handleDel, list, text };
+};
+
+export default function Ceshi() {
+  const { handleClick, addClick, handleDel, list, text } = useHandleClick();
+  console.log(handleClick, list);
+  // let [text, setText] = useState("");
+  // let [list, setList] = useState(["aa", "bb", "cc"]);
+
+  // const handleClick = (ev) => {
+  //   console.log(ev);
+  //   setText(ev.target.value);
+  // };
+  // const addClick = (ev) => {
+  //   setList([...list, text]);
+  //   setText("");
+  // };
+  // const handleDel = (i) => {
+  //   setList(list.filter((v, index) => index !== i));
+  // };
+
+  return (
+    <div>
+      <input type="text" onChange={handleClick} value={text} />
+      <button onClick={addClick}>确认</button>
+      <ul>
+        {list.map((item, index) => (
+          <div key={index}>
+            <li>{item}</li>
+            <button onClick={() => handleDel(index)}>删除</button>
+          </div>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+
+```
+
+
+
+
+
 ## 4. 扩展部分
 
 ### 1. setState
@@ -8374,7 +8447,7 @@ dist/
 
 **项目上线相关配置   使用pm2管理应用**
 
-```
+```js
 1.服务器中安装 pm2: npm i pm2 -g
 2.启动项目 pm2 start脚本 --name自定义名称
 3.查看运行项目 pm2 ls
@@ -9014,6 +9087,93 @@ import './async-module.js'
 
 ```
 
+# 七. css
+
+## 1. div上下左右居中的方法
+
+```css
+  
+ /* 有宽高的写法一 */
+div{
+           
+            position: absolute;      
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: auto; 
+    
+     		width: 200px;
+            height: 200px;
+            background-color: blue;
+}
+
+ /* 有宽高的写法二 */
+div{
+    
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -100px; 
+    
+    		width: 200px;
+            height: 200px;
+            background-color: blue;
+}
+
+/* 有宽高的写法三*/
+
+body{
+          
+           
+            height: 700px;
+            border: 1px solid red;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+div{
+    		width: 200px;
+            height: 200px;
+            background-color: blue;
+}
+
+/*无宽高的写法*/
+
+div{
+    		position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+}
+
+
+<div>123</div>
+
+
+
+
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
 # 七. 错误原因
 
 ## 1. 概念错误
@@ -9500,17 +9660,19 @@ Object.assign(
 
 ## 3. setState()更新状态是异步/同步?
 
-    a. 执行setState()的位置?
-    
-    在react控制的回调函数中: 生命周期勾子 / react事件监听回调
-    
-    非react控制的异步回调函数中: 定时器回调 / 原生DOM事件监听回调 / promise回调 /...
-    
-    b. 异步 OR 同步?
-    
-    react相关回调中（生命周期回调、事件监听回调）: 异步
-    
-    其它异步回调中（定时器、原生DOM事件监听回调、Promsie回调）: 同步
+```js
+a. 执行setState()的位置?
+
+在react控制的回调函数中: 生命周期勾子 / react事件监听回调
+
+非react控制的异步回调函数中: 定时器回调 / 原生DOM事件监听回调 / promise回调 /...
+
+b. 异步 OR 同步?
+
+react相关回调中（生命周期回调、事件监听回调）: 异步
+
+其它异步回调中（定时器、原生DOM事件监听回调、Promsie回调）: 同步
+```
 
 ## 4. 垃圾回收
 
@@ -11169,6 +11331,8 @@ forEach循环 — window
 **2. 箭头函数**
 因为没有prototype，箭头函数没有自己的this，它的函数体中使用的this，其实是继承自 定义它时所在的普通函数的this（如果定义在全局就指向全局对象window/undefined）。this是在上下文创建时确定的，因此箭头函数的父级（函数或全局对象）创建上下文时，箭头函数体内的this也可以说是“绑定”了。
 
+
+
 ```js
 document.addEventListener('click', function() {
         console.log(this); // doucment
@@ -11216,7 +11380,7 @@ let bar = fn.call(obj1); // fn 的 this指向obj1，并返回了箭头函数赋�
 bar.call(obj2); // 听风是风
 ```
 
-`<span style="color:red">`**bar就是箭头函数**，可以看到当我们企图用call把它绑定给obj2并执行的时候，箭头函数内的this仍然指向obj1，显示绑定失败了。
+`<span style="color:red">**bar就是箭头函数**</span>，可以看到当我们企图用call把它绑定给obj2并执行的时候，箭头函数内的this仍然指向obj1，显示绑定失败了。
 
 这里指的是无法直接给箭头函数通过显示绑定修改this指向。修改外层函数this指向从而间接修改箭头函数this当然是可行的。
 
@@ -11452,7 +11616,7 @@ class Dog extends React.Component {
 
 ## 3. React跳转路由传参4种方法和区别
 
-`<span style="color:red;font-weight:800;font-size:20px">`1）.params
+<span style="color:red;font-weight:800;font-size:20px">1）.params </span>
 
 ```react
 
@@ -11475,7 +11639,9 @@ this.props.match.params.id
 
 **缺点 ： 只能传字符串，并且，如果传的值太多的话，url会变得长而丑陋。**
 
-`<span style="color:red;font-weight:800;font-size:20px">`2）、query
+<span style="color:red;font-weight:800;font-size:20px">2）、query </span>
+
+
 
 ```react
 
@@ -11495,7 +11661,7 @@ this.props.location.query.id
 
 **缺点：刷新地址栏，参数丢失（不管是hash方式，还是Browser模式都会丢失参数）**
 
-`<span style="color:red;font-weight:800;font-size:20px">`3）、state
+`<span style="color:red;font-weight:800;font-size:20px">3）、state</span>
 
  同query差不多，只是属性不一样，而且state传的参数是加密的，query传的参数是公开的，只需要把query改为state即可。
 
@@ -11515,7 +11681,7 @@ this.props.location.state.id
 
 **缺点：刷新地址栏，（hash方式会丢失参数，Browser模式不会丢失参数）**
 
-`<span style="color:red;font-weight:800;font-size:20px">`4）、search
+`<span style="color:red;font-weight:800;font-size:20px">4）、search</span>
 
 ```react
 声明式导航
@@ -11548,44 +11714,49 @@ this.props.location.search
 
     let str = "{[()]}"   // true
 
-    function fn(str) {
+   function fn(str) {
 
-    
-        console.log(str.length)
-        if (str.length % 2 !== 0) return false
+    let arr=[];
+    if (str.length % 2 !== 0) return false
 
-        for (const key of str) {
-                switch (key) {
+    for (const key of str) {
+        switch (key) {
 
-                    case "{":
-                        arr.push('{')
-                        break;
-                    case "[":
-                        arr.push('[')
-                        break;
-                    case "(":
-                        arr.push('(')
-                        break;
+            case "{":
+                arr.push('{')
+                break;
+            case "[":
+                arr.push('[')
+                break;
+            case "(":
+                arr.push('(')
+                break;
 
-                    case "}":
-                        arr.pop()
-                        break;
-
-                    case "]":
+            case "}":
+                if(arr[arr.length-1]==="{"){
                     arr.pop()
-                        break;
-
-                    case ")":
-                    arr.pop()
-                        break;
                 }
-            }
+                break;
 
-      
-        console.log(obj)
-        return arr.length === 0 ? true : false;
+            case "]":
+                if(arr[arr.length-1]==="["){
+                    arr.pop()
+                }
+                break;
 
+            case ")":
+                if(arr[arr.length-1]==="("){
+                    arr.pop()
+                }
+                break;
+        }
     }
+
+
+   
+    return arr.length === 0 ? true : false;
+
+}
     console.log(fn(str))
 ```
 
@@ -11811,21 +11982,74 @@ function queryString(str) {
     let str = "http://www.baidu.com?a=1&b=2&c=&a=5&d=xxx&a=6&b=6"
     console.log(  queryString(str))
 
+
+
+
+
+
+function queryString(str){
+    let obj={}
+    let arr=  str.slice(str.indexOf('?')+1).split('&').map(v=>v.split('='))  // 转化成二维数组  
+     
+     arr.map(v=>{
+        if(!obj.hasOwnProperty(v[0])){   // hasOwnProperty() 只会检查对象的自有属性
+            obj[v[0]]=v[1]
+        }
+        else{
+            obj[v[0]]=[...obj[v[0]],v[1]] 
+        }
+    })
+        console.log(obj)
+    return obj
+    
+
+  
+  }
+
   
 ```
 
-### 10. 列表按照顺序输出
+### 10. 找出所有的key
 
 ```js
-let orderOffers = [
-        ...offers.filter(v => v.groupName === 'aaa'),
-        ...offers.filter(v => v.groupName === 'bbb'),
-        ...offers.filter(v => v.groupName === 'ccc'),
-        ...offers.filter(v => v.groupName === 'ddd'),
-        ...offers.filter(v => v.groupName === 'eee'),
-        ...offers.filter(v => v.groupName === 'fff'),
-        ...offers.filter(v => v.groupName === 'ggg'),
-      ]
+const obj = {
+    a: '12',
+    b: '23',
+    first: {
+        c: '34',
+        d: '45'
+
+    },
+    second: {
+        e: '56',
+        f: '67',
+        three: {
+            g: '78',
+            h: '89',
+            i: '90'
+        }
+    }
+}
+
+function allKeys(obj) {
+    let arr = [];
+    for (const key in obj) {
+        if (obj[key].constructor.name === 'Object') {   // typeof {} [] 这种判断都是object    
+            arr.push(...allKeys(obj[key]))
+        }
+        else {
+            arr.push(key)
+        }
+    }
+    return arr;
+}
+
+
+
+console.log(allKeys(obj))
+// [
+//     'a', 'b', 'c','d', 'e', 'f','g', 'h', 'i'
+// ]
 ```
 
 # d. React功能
@@ -11994,4 +12218,4 @@ export default function Timer({ continueTimer }) {
 
 ```
 
-# ???
+# e
